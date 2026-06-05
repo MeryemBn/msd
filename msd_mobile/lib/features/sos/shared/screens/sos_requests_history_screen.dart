@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import '../../../../app/app_theme.dart';
 import '../../../../l10n/app_localizations.dart';
+import '../../../profile/widgets/chatbot_sheet.dart';
 import '../models/request_details.dart';
 import '../models/sos_request.dart';
 import '../models/sos_enums.dart';
@@ -25,6 +26,15 @@ class _SosRequestsHistoryScreenState extends ConsumerState<SosRequestsHistoryScr
   void initState() {
     super.initState();
     Future.microtask(() => ref.read(sosProvider.notifier).loadMyRequests());
+  }
+
+  void _showChatbot(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => const ChatbotSheet(),
+    );
   }
 
   List<SosRequest> _filterRequests(List<SosRequest> requests) {
@@ -77,6 +87,15 @@ class _SosRequestsHistoryScreenState extends ConsumerState<SosRequestsHistoryScr
                 ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _showChatbot(context),
+        backgroundColor: AppTheme.primary,
+        elevation: 4,
+        child: const Icon(
+          Icons.smart_toy_rounded,
+          color: Colors.white,
+        ),
       ),
     );
   }

@@ -20,6 +20,7 @@ import '../../sos/shared/widgets/sos_request_detail_sheet.dart';
 import '../../../shared/widgets/loading_skeleton.dart';
 import '../../../shared/widgets/section_header.dart';
 import 'pharmacy_map_screen.dart';
+import '../../profile/widgets/chatbot_sheet.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -37,6 +38,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       // Keep SOS polling active so patients receive accept/reject notifications
       ref.read(sosProvider.notifier).loadMyRequests(silent: true);
     });
+  }
+
+  void _showChatbot(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => const ChatbotSheet(),
+    );
   }
 
   void _navigateToSos(SosType type) {
@@ -135,6 +145,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ],
             ),
           ),
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _showChatbot(context),
+        backgroundColor: AppTheme.primary,
+        elevation: 4,
+        child: const Icon(
+          Icons.smart_toy_rounded,
+          color: Colors.white,
         ),
       ),
     );

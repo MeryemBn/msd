@@ -528,5 +528,12 @@
   "adminDoctors": "Doctors",
   "adminAmbulances": "Ambulances",
   "adminNurses": "Nurses",
-  "adminTeleconsult": "Teleconsultations"
+  "adminTeleconsult": "Teleconsultations",
+  "chatbotTitle": "MSD AI Assistant",
+  "chatbotHistory": "History",
+  "chatbotHint": "Ask your question...",
+  "chatbotNoHistory": "No history yet",
+  "chatbotNewChat": "New Chat",
+  "chatbotCopied": "Copied to clipboard",
+  "chatbotConsult": "Consult"
 }

@@ -20,8 +20,8 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
   void _resetAllAppData() {
     debugPrint("🧹 Nettoyage des données de session...");
-    // On vide le profil. Les autres providers (revenus, etc.) se réinitialiseront 
-    // automatiquement car ils observent (watch) le authProvider.
+    // On vide le profil. Le chatbotProvider se réinitialisera automatiquement
+    // car il observe (watch) l'accessToken dans son propre provider.
     _ref.read(profileProvider.notifier).clearProfile();
   }
 
@@ -191,8 +191,11 @@ class AuthNotifier extends StateNotifier<AuthState> {
   void logout() async {
     await _authService.logout();
     await notificationHistoryService.closeBox();
-    _resetAllAppData();
+    
+    // On met à jour l'état d'abord pour déclencher la réactivité des autres providers
     state = const AuthState(status: AuthStatus.unauthenticated);
+    
+    _resetAllAppData();
   }
 
   void resetState() {

@@ -9,6 +9,7 @@ import '../providers/profile_provider.dart';
 import '../providers/settings_provider.dart';
 import '../models/medical_record.dart';
 import '../../sos/shared/models/sos_enums.dart';
+import '../widgets/chatbot_sheet.dart';
 
 class ProfileScreen extends ConsumerStatefulWidget {
   const ProfileScreen({super.key});
@@ -24,6 +25,15 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(profileProvider.notifier).loadProfile();
     });
+  }
+
+  void _showChatbot(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => const ChatbotSheet(),
+    );
   }
 
   String _getLanguageName(Locale locale) {
@@ -174,6 +184,15 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
           ),
         ),
       ),
+      floatingActionButton: !isPro ? FloatingActionButton(
+        onPressed: () => _showChatbot(context),
+        backgroundColor: AppTheme.primary,
+        elevation: 4,
+        child: const Icon(
+          Icons.smart_toy_rounded,
+          color: Colors.white,
+        ),
+      ) : null,
     );
   }
 

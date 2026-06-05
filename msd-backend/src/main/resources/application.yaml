@@ -28,9 +28,12 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: ${app.keycloak.server-url}/realms/${app.keycloak.realm}
+          jwk-set-uri: ${app.keycloak.server-url}/realms/${app.keycloak.realm}/protocol/openid-connect/certs
 
 app:
+  ai-service:
+    url: http://localhost:8000/chat
+
   storage:
     upload-dir: ${APP_STORAGE_DIR:uploads}
 

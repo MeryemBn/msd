@@ -1286,4 +1286,25 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get adminTeleconsult => 'Téléconsultations';
+
+  @override
+  String get chatbotTitle => 'MSD AI Assistant';
+
+  @override
+  String get chatbotHistory => 'Historique';
+
+  @override
+  String get chatbotHint => 'Posez votre question...';
+
+  @override
+  String get chatbotNoHistory => 'Aucun historique';
+
+  @override
+  String get chatbotNewChat => 'Nouveau Chat';
+
+  @override
+  String get chatbotCopied => 'Copié dans le presse-papier';
+
+  @override
+  String get chatbotConsult => 'Consulter';
 }

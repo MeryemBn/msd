@@ -9,6 +9,7 @@ import '../widgets/medication_card.dart';
 import 'add_medication_screen.dart';
 import 'medication_planning_screen.dart';
 import '../widgets/medication_details_bottom_sheet.dart';
+import '../../profile/widgets/chatbot_sheet.dart';
 
 class MedicationTimelineScreen extends ConsumerStatefulWidget {
   final String? targetIntakeLogId;
@@ -45,6 +46,15 @@ class _MedicationTimelineScreenState extends ConsumerState<MedicationTimelineScr
         setState(() {});
       }
     });
+  }
+
+  void _showChatbot(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (context) => const ChatbotSheet(),
+    );
   }
 
   @override
@@ -258,14 +268,11 @@ class _MedicationTimelineScreenState extends ConsumerState<MedicationTimelineScr
           ],
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const MedicationPlanningScreen())),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _showChatbot(context),
         backgroundColor: AppTheme.primary,
-        foregroundColor: Colors.white,
         elevation: 4,
-        icon: const Icon(Icons.calendar_month),
-        label: Text(l10n.calendarAndTracking, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+        child: const Icon(Icons.smart_toy_rounded, color: Colors.white),
       ),
     );
   }
@@ -297,6 +304,13 @@ class _MedicationTimelineScreenState extends ConsumerState<MedicationTimelineScr
               ],
             ),
           ),
+          // Bouton Calendrier déplacé ici
+          IconButton(
+            onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const MedicationPlanningScreen())),
+            icon: const Icon(Icons.calendar_month, color: AppTheme.primary, size: 28),
+            tooltip: l10n.calendarAndTracking,
+          ),
+          const SizedBox(width: 8),
           GestureDetector(
             onTap: () => showModalBottomSheet(
               context: context,

@@ -2475,6 +2475,48 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Téléconsultations'**
   String get adminTeleconsult;
+
+  /// No description provided for @chatbotTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'MSD AI Assistant'**
+  String get chatbotTitle;
+
+  /// No description provided for @chatbotHistory.
+  ///
+  /// In fr, this message translates to:
+  /// **'Historique'**
+  String get chatbotHistory;
+
+  /// No description provided for @chatbotHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Posez votre question...'**
+  String get chatbotHint;
+
+  /// No description provided for @chatbotNoHistory.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun historique'**
+  String get chatbotNoHistory;
+
+  /// No description provided for @chatbotNewChat.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau Chat'**
+  String get chatbotNewChat;
+
+  /// No description provided for @chatbotCopied.
+  ///
+  /// In fr, this message translates to:
+  /// **'Copié dans le presse-papier'**
+  String get chatbotCopied;
+
+  /// No description provided for @chatbotConsult.
+  ///
+  /// In fr, this message translates to:
+  /// **'Consulter'**
+  String get chatbotConsult;
 }
 
 class _AppLocalizationsDelegate

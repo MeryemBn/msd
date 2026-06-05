@@ -1266,4 +1266,25 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get adminTeleconsult => 'الاستشارات عن بعد';
+
+  @override
+  String get chatbotTitle => 'مساعد MSD الذكي';
+
+  @override
+  String get chatbotHistory => 'السجل';
+
+  @override
+  String get chatbotHint => 'اسأل سؤالك هنا...';
+
+  @override
+  String get chatbotNoHistory => 'لا يوجد سجل محادثات';
+
+  @override
+  String get chatbotNewChat => 'محادثة جديدة';
+
+  @override
+  String get chatbotCopied => 'تم النسخ إلى الحافظة';
+
+  @override
+  String get chatbotConsult => 'عرض التفاصيل';
 }

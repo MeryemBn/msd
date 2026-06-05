@@ -1,0 +1,79 @@
+{
+  "app_info": {
+    "name": "MSD (Medical Service Delivery)",
+    "description": "Application de services médicaux d'urgence et de soins à domicile."
+  },
+  "features": [
+    {
+      "intent": "emergency_request",
+      "keywords": "urgence, sos, immédiat, vite, ambulance, médecin proche, samu, secours",
+      "description": "Demander une intervention d'urgence.",
+      "response": "Pour les **urgences (SOS)**, utilisez les boutons de la section **'SERVICES SOS'** sur l'écran d'Accueil. Le professionnel qualifié le plus proche acceptera votre demande pour une intervention immédiate.",
+      "route": "/home"
+    },
+    {
+      "intent": "appointment_booking",
+      "keywords": "rendez-vous, rdv, choisir médecin, spécialiste, programmer, planning docteur",
+      "description": "Prendre un rendez-vous avec un professionnel spécifique.",
+      "response": "Lors de la création d'un **Rendez-vous**, vous pouvez choisir le professionnel de votre choix en consultant son profil, sa **proximité** et les **avis** laissés par d'autres patients.",
+      "route": "/home"
+    },
+    {
+      "intent": "request_tracking_live",
+      "keywords": "suivi temps réel, position médecin, où est l'ambulance, carte, gps pro",
+      "description": "Suivre la position du professionnel sur la carte.",
+      "response": "Une fois votre demande acceptée, vous pouvez suivre la **position du professionnel en temps réel** sur une carte interactive depuis l'onglet **'Demandes'**.",
+      "route": "/requests"
+    },
+    {
+      "intent": "request_payment_rating",
+      "keywords": "payer, facture, noter, avis, commentaire, étoiles, régler intervention",
+      "description": "Paiement et évaluation d'une intervention.",
+      "response": "Dans l'onglet **'Demandes'**, vous pouvez :\n- **Payer** une intervention en attente de règlement.\n- **Noter** et laisser un **avis** sur la prestation une fois l'intervention terminée.",
+      "route": "/requests"
+    },
+    {
+      "intent": "medication_actions",
+      "keywords": "pris, manqué, décaler, changer heure, retard, valider prise",
+      "description": "Actions sur les prises de médicaments.",
+      "response": "Dans l'onglet **'Médicaments'**, vous pouvez agir sur chaque prise : la marquer comme **Prise**, **Manquée**, ou même **Décaler l'horaire** si vous avez un imprévu.",
+      "route": "/medications"
+    },
+    {
+      "intent": "medication_planning",
+      "keywords": "planning mois, calendrier, calendrier médicaments, vue mensuelle",
+      "description": "Consulter le planning mensuel des traitements.",
+      "response": "Vous pouvez consulter votre **planning complet du mois** en utilisant le calendrier situé en haut de l'onglet **'Médicaments'**.",
+      "route": "/medications"
+    },
+    {
+      "intent": "alarms_settings",
+      "keywords": "alarme, sonnerie, notification, rappel sonore, configurer alerte",
+      "description": "Configurer le type de rappels.",
+      "response": "Pour chaque médicament, vous pouvez programmer des **Alarmes sonores** persistantes ou de simples **Notifications** pour ne jamais oublier votre traitement.",
+      "route": "/medications"
+    },
+    {
+      "intent": "pharmacy_nearby",
+      "keywords": "pharmacie de garde, pharmacie ouverte, à proximité, trouver pharmacie, carte pharmacie",
+      "description": "Trouver des pharmacies de garde.",
+      "response": "Utilisez le service **'Pharmacie de garde'** sur l'écran d'Accueil pour visualiser sur la carte les **pharmacies ouvertes à proximité** de votre position actuelle.",
+      "route": "/home"
+    },
+    {
+      "intent": "profile_management",
+      "keywords": "modifier compte, infos personnelles, changer nom, adresse, téléphone, groupe sanguin, allergies, modifier profil",
+      "description": "Modification des informations du profil.",
+      "response": "Pour modifier vos **informations personnelles** ou **médicales**, allez dans l'onglet **'Profil'** et cliquez sur l'icône **Crayon (🖊️)** en haut à droite.",
+      "route": "/profile"
+    },
+    {
+      "intent": "app_settings",
+      "keywords": "mode sombre, thème, nuit, noir, changer langue, français, arabe, anglais, notifications, paramètres",
+      "description": "Réglages de l'application.",
+      "response": "Dans l'onglet **'Profil'**, section **'PARAMÈTRES'**, vous pouvez changer la **Langue**, activer le **Mode sombre** ou gérer vos **Notifications**.",
+      "route": "/profile"
+    }
+  ],
+  "medical_disclaimer": "⚠️ **Attention :** Je suis un assistant virtuel. Mes conseils ne remplacent pas un avis médical. En cas d'urgence vitale, appelez le **15** ou le **112**."
+}

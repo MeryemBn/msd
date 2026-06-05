@@ -1,0 +1,12 @@
+.env
+**/venv/
+**/.env
+.idea/
+*.iml
+msd-backend/.gradle/
+msd-backend/build/
+msd_mobile/.dart_tool/
+msd_mobile/.flutter-plugins
+msd_mobile/.flutter-plugins-dependencies
+msd_mobile/.packages
+msd_mobile/build/

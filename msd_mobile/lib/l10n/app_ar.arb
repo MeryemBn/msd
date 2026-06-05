@@ -515,5 +515,12 @@
   "adminDoctors": "الأطباء",
   "adminAmbulances": "سيارات الإسعاف",
   "adminNurses": "الممرضين",
-  "adminTeleconsult": "الاستشارات عن بعد"
+  "adminTeleconsult": "الاستشارات عن بعد",
+  "chatbotTitle": "مساعد MSD الذكي",
+  "chatbotHistory": "السجل",
+  "chatbotHint": "اسأل سؤالك هنا...",
+  "chatbotNoHistory": "لا يوجد سجل محادثات",
+  "chatbotNewChat": "محادثة جديدة",
+  "chatbotCopied": "تم النسخ إلى الحافظة",
+  "chatbotConsult": "عرض التفاصيل"
 }
