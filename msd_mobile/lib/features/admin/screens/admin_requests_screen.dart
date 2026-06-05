@@ -46,7 +46,7 @@ class _AdminRequestsScreenState extends ConsumerState<AdminRequestsScreen> {
     final details = req.details;
     
     String serviceLabel = "SOS";
-    String motiveLabel = "Motif d'intervention";
+    String motiveLabel = l10n.description;
     String motiveValue = "N/A";
 
     if (details is DoctorDetails) {
@@ -59,7 +59,7 @@ class _AdminRequestsScreenState extends ConsumerState<AdminRequestsScreen> {
       motiveValue = details.ambulanceType.getLabel(l10n);
     } else if (details is NurseDetails) {
       serviceLabel = l10n.nurse;
-      motiveLabel = "Motif";
+      motiveLabel = l10n.description;
       motiveValue = l10n.homeCare;
     } else if (details is TeleconsultDetails) {
       serviceLabel = l10n.teleconsultation;
@@ -87,7 +87,7 @@ class _AdminRequestsScreenState extends ConsumerState<AdminRequestsScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text("Détails de la Demande", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                  Text(l10n.adminRequestDetails, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(color: AppTheme.primary.withOpacity(0.1), borderRadius: BorderRadius.circular(8)),
@@ -96,27 +96,27 @@ class _AdminRequestsScreenState extends ConsumerState<AdminRequestsScreen> {
                 ],
               ),
               const SizedBox(height: 24),
-              _buildSectionTitle("Patient"),
-              _buildDetailItem(Icons.person_outline, "Nom Complet", req.patientFullName),
-              _buildDetailItem(Icons.phone_outlined, "Téléphone", req.patientPhoneNumber ?? "N/A"),
+              _buildSectionTitle(l10n.patient),
+              _buildDetailItem(Icons.person_outline, l10n.fullName, req.patientFullName),
+              _buildDetailItem(Icons.phone_outlined, l10n.phone, req.patientPhoneNumber ?? "N/A"),
               const Divider(height: 32),
-              _buildSectionTitle("Service & Intervention"),
-              _buildDetailItem(Icons.medical_services_outlined, "Type de Service", serviceLabel),
+              _buildSectionTitle(l10n.adminServiceIntervention),
+              _buildDetailItem(Icons.medical_services_outlined, l10n.serviceType, serviceLabel),
               _buildDetailItem(Icons.info_outline, motiveLabel, motiveValue),
-              _buildDetailItem(Icons.calendar_today_outlined, "Date Création", req.createdAt != null ? DateFormat('dd/MM/yyyy HH:mm').format(req.createdAt!) : "N/A"),
+              _buildDetailItem(Icons.calendar_today_outlined, l10n.adminCreationDate, req.createdAt != null ? DateFormat('dd/MM/yyyy HH:mm').format(req.createdAt!) : "N/A"),
               if (req.details.interventionDetails.appointmentDateTime != null)
-                _buildDetailItem(Icons.alarm_on_outlined, "Date RDV", DateFormat('dd/MM/yyyy HH:mm').format(req.details.interventionDetails.appointmentDateTime!)),
+                _buildDetailItem(Icons.alarm_on_outlined, l10n.adminAppointmentDate, DateFormat('dd/MM/yyyy HH:mm').format(req.details.interventionDetails.appointmentDateTime!)),
               const Divider(height: 32),
-              _buildSectionTitle("Professionnel Assigné"),
+              _buildSectionTitle(l10n.adminAssignedPro),
               if (req.professionalFullName.isNotEmpty) ...[
-                _buildDetailItem(Icons.badge_outlined, "Nom", req.professionalFullName),
-                _buildDetailItem(Icons.phone_android_outlined, "Téléphone Pro", req.professionalPhoneNumber ?? "N/A"),
+                _buildDetailItem(Icons.badge_outlined, l10n.fullName, req.professionalFullName),
+                _buildDetailItem(Icons.phone_android_outlined, l10n.phone, req.professionalPhoneNumber ?? "N/A"),
               ] else
-                const Text("Non encore assigné", style: TextStyle(fontStyle: FontStyle.italic, color: Colors.grey)),
+                Text(l10n.adminNotYetAssigned, style: const TextStyle(fontStyle: FontStyle.italic, color: Colors.grey)),
               const Divider(height: 32),
-              _buildSectionTitle("Paiement"),
-              _buildDetailItem(Icons.payments_outlined, "Méthode", req.paymentMethod.getLabel(l10n)),
-              _buildDetailItem(Icons.money_rounded, "Montant Total", "${req.price} MAD"),
+              _buildSectionTitle(l10n.payment),
+              _buildDetailItem(Icons.payments_outlined, l10n.paymentMethod, req.paymentMethod.getLabel(l10n)),
+              _buildDetailItem(Icons.money_rounded, l10n.totalRevenue, "${req.price} MAD"),
               const SizedBox(height: 40),
             ],
           ),
@@ -170,7 +170,7 @@ class _AdminRequestsScreenState extends ConsumerState<AdminRequestsScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text("Moniteur des Demandes"),
+        title: Text(l10n.adminRequestsMonitor),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(100),
           child: Column(
@@ -180,11 +180,11 @@ class _AdminRequestsScreenState extends ConsumerState<AdminRequestsScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 child: Row(
                   children: [
-                    _buildFilterChip("TOUT", "ALL", true),
-                    _buildFilterChip("PENDING", "PENDING", true),
-                    _buildFilterChip("CONFIRMED", "CONFIRMED", true),
-                    _buildFilterChip("IN_PROGRESS", "IN_PROGRESS", true),
-                    _buildFilterChip("COMPLETED", "COMPLETED", true),
+                    _buildFilterChip(l10n.filterAll, "ALL", true),
+                    _buildFilterChip(l10n.filterPending, "PENDING", true),
+                    _buildFilterChip(l10n.filterConfirmed, "CONFIRMED", true),
+                    _buildFilterChip(l10n.filterInProgress, "IN_PROGRESS", true),
+                    _buildFilterChip(l10n.filterCompleted, "COMPLETED", true),
                   ],
                 ),
               ),
@@ -193,10 +193,10 @@ class _AdminRequestsScreenState extends ConsumerState<AdminRequestsScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 child: Row(
                   children: [
-                    _buildFilterChip("Toutes dates", "ALL", false),
-                    _buildFilterChip("Aujourd'hui", "TODAY", false),
-                    _buildFilterChip("Cette semaine", "WEEK", false),
-                    _buildFilterChip("Ce mois", "MONTH", false),
+                    _buildFilterChip(l10n.adminAllDates, "ALL", false),
+                    _buildFilterChip(l10n.today, "TODAY", false),
+                    _buildFilterChip(l10n.adminThisWeek, "WEEK", false),
+                    _buildFilterChip(l10n.adminThisMonth, "MONTH", false),
                   ],
                 ),
               ),
@@ -207,7 +207,7 @@ class _AdminRequestsScreenState extends ConsumerState<AdminRequestsScreen> {
       body: state.isLoading 
           ? const Center(child: CircularProgressIndicator())
           : filteredRequests.isEmpty
-              ? const Center(child: Text("Aucune demande trouvée"))
+              ? Center(child: Text(l10n.noRequests))
               : RefreshIndicator(
                   onRefresh: () => ref.read(adminProvider.notifier).loadAllRequests(),
                   child: ListView.builder(

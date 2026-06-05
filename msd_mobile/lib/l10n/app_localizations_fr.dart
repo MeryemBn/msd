@@ -726,13 +726,13 @@ class AppLocalizationsFr extends AppLocalizations {
   String get myRequestsTitle => 'Mes demandes';
 
   @override
-  String get filterAll => 'Tous';
+  String get filterAll => 'TOUT';
 
   @override
   String get filterOngoing => 'En cours';
 
   @override
-  String get filterCompleted => 'Terminés';
+  String get filterCompleted => 'TERMINÉS';
 
   @override
   String get filterCancelled => 'Annulés';
@@ -1307,4 +1307,210 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get chatbotConsult => 'Consulter';
+
+  @override
+  String get financialDashboard => 'Tableau de Bord Financier';
+
+  @override
+  String get performanceLast6Months => 'Performance (6 derniers mois)';
+
+  @override
+  String get earningsHistory => 'Historique des Gains';
+
+  @override
+  String get totalRevenue => 'Chiffre d\'affaires total';
+
+  @override
+  String get thisMonth => 'Ce mois';
+
+  @override
+  String get pricingManagement => 'Gestion des Tarifs';
+
+  @override
+  String get adjustPricesAndLimits => 'Ajustez vos prix et limites';
+
+  @override
+  String get noEarningsRecorded => 'Aucun gain enregistré.';
+
+  @override
+  String get pricingPilot => 'PILOTAGE DES TARIFS';
+
+  @override
+  String get pricingFreedom => 'Liberté des Tarifs';
+
+  @override
+  String get pricingFreedomDesc =>
+      'Déterminez vos propres tarifs selon votre expertise et la qualité de vos services.';
+
+  @override
+  String get updateMyServices => 'METTRE À JOUR MES SERVICES';
+
+  @override
+  String get consultationFeeLabel => 'Tarif de la consultation';
+
+  @override
+  String get extraKmFee => 'Frais / KM';
+
+  @override
+  String get includedRadius => 'Rayon inclus';
+
+  @override
+  String get pricingSaveSuccess => 'Configurations enregistrées avec succès';
+
+  @override
+  String get adminPatientsList => 'Liste des Patients';
+
+  @override
+  String get searchPatientHint => 'Rechercher un patient...';
+
+  @override
+  String get noPatientFound => 'Aucun patient trouvé';
+
+  @override
+  String get proDirectory => 'Annuaire Professionnels';
+
+  @override
+  String get searchProHint => 'Rechercher un nom...';
+
+  @override
+  String get filterValidated => 'VALIDÉS';
+
+  @override
+  String get filterPending => 'EN ATTENTE';
+
+  @override
+  String get filterRejected => 'REJETÉS';
+
+  @override
+  String get noResultFound => 'Aucun résultat trouvé';
+
+  @override
+  String get noMedicalInfoProvided =>
+      'Aucune information médicale renseignée pour ce patient.';
+
+  @override
+  String get adminRequestDetails => 'Détails de la Demande';
+
+  @override
+  String get adminServiceIntervention => 'Service & Intervention';
+
+  @override
+  String get adminCreationDate => 'Date Création';
+
+  @override
+  String get adminAppointmentDate => 'Date RDV';
+
+  @override
+  String get adminAssignedPro => 'Professionnel Assigné';
+
+  @override
+  String get adminNotYetAssigned => 'Non encore assigné';
+
+  @override
+  String get adminRequestsMonitor => 'Moniteur des Demandes';
+
+  @override
+  String get adminAllDates => 'Toutes dates';
+
+  @override
+  String get adminThisWeek => 'Cette semaine';
+
+  @override
+  String get adminThisMonth => 'Ce mois';
+
+  @override
+  String get proReviewsTitle => 'Mes Avis';
+
+  @override
+  String proReviewsOf(String name) {
+    return 'Avis sur $name';
+  }
+
+  @override
+  String get proNoReviewsYet => 'Aucun avis pour le moment';
+
+  @override
+  String get proNoReviewsProDesc =>
+      'Ce professionnel n\'a pas encore reçu d\'évaluations.';
+
+  @override
+  String get proNoReviewsMeDesc =>
+      'Vos évaluations apparaîtront ici dès que les patients auront noté vos interventions.';
+
+  @override
+  String get adminReviewTitle => 'Vérification Dossier';
+
+  @override
+  String get adminRejectionReasonTitle => 'Motif du refus';
+
+  @override
+  String get adminRejectionHint =>
+      'Expliquez pourquoi ce dossier est rejeté...';
+
+  @override
+  String get adminConfirmRejection => 'Confirmer le rejet';
+
+  @override
+  String get adminSupportingDocs => 'Pièces Justificatives';
+
+  @override
+  String get adminProAlreadyValidated => 'Ce professionnel est déjà validé';
+
+  @override
+  String get adminProAlreadyRejected => 'Ce professionnel a été rejeté';
+
+  @override
+  String get adminServiceLabel => 'Service';
+
+  @override
+  String get adminSpecTypeLabel => 'Spécialité / Type';
+
+  @override
+  String get adminNoOcrData =>
+      '⚠️ Aucune donnée OCR disponible pour ce document.';
+
+  @override
+  String get adminRejectAction => 'REJETER';
+
+  @override
+  String get adminValidateAction => 'VALIDER LE DOSSIER';
+
+  @override
+  String get statusAwaitingPayment => 'En attente de paiement';
+
+  @override
+  String get adminRole => 'Administrateur';
+
+  @override
+  String get filterConfirmed => 'CONFIRMÉS';
+
+  @override
+  String get filterInProgress => 'EN COURS';
+
+  @override
+  String get notSpecified => 'Non spécifié';
+
+  @override
+  String get notificationAdminNewProTitle => 'Dossier à valider';
+
+  @override
+  String notificationAdminNewProBody(Object name) {
+    return 'Le professionnel $name a soumis ses documents pour validation.';
+  }
+
+  @override
+  String get notificationAdminNewPatientTitle => 'Nouveau Patient';
+
+  @override
+  String notificationAdminNewPatientBody(Object name) {
+    return 'Un nouveau patient, $name, vient de créer son compte.';
+  }
+
+  @override
+  String get notificationAdminNewSosTitle => 'Nouvelle Alerte SOS';
+
+  @override
+  String notificationAdminNewSosBody(Object name) {
+    return 'Une nouvelle demande SOS a été créée par $name.';
+  }
 }

@@ -38,7 +38,7 @@ class SosPaymentStep extends ConsumerWidget {
           const SizedBox(height: 24),
           
           if (selectedPro != null) ...[
-            // ÉCRAN POUR RENDEZ-VOUS : Affichage du prix calculé
+            // ÉCRAN POUR RENDEZ-VOUS : Affichage du prix réel du professionnel
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
@@ -93,7 +93,7 @@ class SosPaymentStep extends ConsumerWidget {
               ),
             ),
           ] else ...[
-            // ÉCRAN POUR URGENCE (SOS) : Estimation du prix moyen
+            // ÉCRAN POUR URGENCE (SOS) : Estimation du prix
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
@@ -109,7 +109,9 @@ class SosPaymentStep extends ConsumerWidget {
                       const Icon(Icons.analytics_outlined, color: AppTheme.primary, size: 18),
                       const SizedBox(width: 8),
                       Text(
-                        "Estimation du tarif SOS",
+                        sosState.currentType == SosType.ambulance 
+                          ? "Estimation du tarif Ambulance" 
+                          : "Estimation du tarif SOS",
                         style: TextStyle(
                           color: isDark ? Colors.white70 : AppTheme.textDark,
                           fontSize: 13,
@@ -118,10 +120,10 @@ class SosPaymentStep extends ConsumerWidget {
                       ),
                     ],
                   ),
-                  if (estimatedPrice != null && estimatedPrice > 0) ...[
+                  if ((estimatedPrice != null && estimatedPrice > 0) || (sosState.currentType == SosType.ambulance && price > 0)) ...[
                     const SizedBox(height: 16),
                     Text(
-                      '~ ${NumberFormat("#,##0").format(estimatedPrice)} MAD',
+                      '~ ${NumberFormat("#,##0").format(estimatedPrice ?? price)} MAD',
                       style: TextStyle(
                         fontSize: 28,
                         fontWeight: FontWeight.w900,
@@ -130,7 +132,9 @@ class SosPaymentStep extends ConsumerWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      "Ce prix est une moyenne calculée sur les tarifs des professionnels disponibles dans votre zone.",
+                      sosState.currentType == SosType.ambulance
+                        ? "Ce prix est une estimation basée sur le type d'ambulance. Le tarif final sera confirmé par le prestataire."
+                        : "Ce prix est une moyenne calculée sur les tarifs des professionnels disponibles dans votre zone.",
                       style: TextStyle(
                         fontSize: 12,
                         color: isDark ? Colors.white54 : Colors.grey.shade600,
@@ -154,7 +158,7 @@ class SosPaymentStep extends ConsumerWidget {
 
           const SizedBox(height: 24),
 
-          // Choix de la méthode de paiement (Toujours affiché)
+          // Choix de la méthode de paiement
           if (!isTeleconsult) ...[
             SosSelectionCard(
               title: PaymentMethod.cash.getLabel(l10n),

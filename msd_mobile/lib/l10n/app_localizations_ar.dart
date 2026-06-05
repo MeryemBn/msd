@@ -345,7 +345,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get morning => 'صباحا';
+  String get morning => 'صباحاً';
 
   @override
   String get noon => 'ظهراً';
@@ -722,7 +722,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get filterOngoing => 'قيد التنفيذ';
 
   @override
-  String get filterCompleted => 'المكتملة';
+  String get filterCompleted => 'مكتمل';
 
   @override
   String get filterCancelled => 'الملغاة';
@@ -1002,7 +1002,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get user => 'مستخدم';
 
   @override
-  String get occupation => 'مهنتك';
+  String get occupation => 'المهنة';
 
   @override
   String get proximityRange => 'نطاق البحث';
@@ -1117,15 +1117,15 @@ class AppLocalizationsAr extends AppLocalizations {
       'تم رفض طلبك. يمكنك المحاولة مرة أخرى مع مختص آخر.';
 
   @override
-  String get notificationNewRatingTitle => 'Nouvelle évaluation';
+  String get notificationNewRatingTitle => 'تقييم جديد';
 
   @override
   String notificationNewRatingBody(String name, int rating) {
-    return '$name vous a donné une note de $rating étoiles !';
+    return 'أعطاك $name تقييم $rating نجوم!';
   }
 
   @override
-  String get afternoon => 'بعد الظهر';
+  String get afternoon => 'Après-midi';
 
   @override
   String get availableTimeSlots => 'الأوقات المتاحة';
@@ -1287,4 +1287,207 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get chatbotConsult => 'عرض التفاصيل';
+
+  @override
+  String get financialDashboard => 'لوحة القيادة المالية';
+
+  @override
+  String get performanceLast6Months => 'الأداء (آخر 6 أشهر)';
+
+  @override
+  String get earningsHistory => 'سجل الأرباح';
+
+  @override
+  String get totalRevenue => 'إجمالي الإيرادات';
+
+  @override
+  String get thisMonth => 'هذا الشهر';
+
+  @override
+  String get pricingManagement => 'إدارة الأسعار';
+
+  @override
+  String get adjustPricesAndLimits => 'اضبط أسعارك وحدودك';
+
+  @override
+  String get noEarningsRecorded => 'لا توجد أرباح مسجلة.';
+
+  @override
+  String get pricingPilot => 'قيادة الأسعار';
+
+  @override
+  String get pricingFreedom => 'حرية الأسعار';
+
+  @override
+  String get pricingFreedomDesc =>
+      'حدد أسعارك الخاصة وفقاً لخبرتك وجودة خدماتك.';
+
+  @override
+  String get updateMyServices => 'تحديث خدماتي';
+
+  @override
+  String get consultationFeeLabel => 'رسوم الاستشارة';
+
+  @override
+  String get extraKmFee => 'رسوم / كم';
+
+  @override
+  String get includedRadius => 'النطاق المشمول';
+
+  @override
+  String get pricingSaveSuccess => 'تم حفظ الإعدادات بنجاح';
+
+  @override
+  String get adminPatientsList => 'قائمة المرضى';
+
+  @override
+  String get searchPatientHint => 'البحث عن مريض...';
+
+  @override
+  String get noPatientFound => 'لم يتم العثور على مريض';
+
+  @override
+  String get proDirectory => 'دليل المهنيين';
+
+  @override
+  String get searchProHint => 'البحث عن اسم...';
+
+  @override
+  String get filterValidated => 'تم التحقق';
+
+  @override
+  String get filterPending => 'في الانتظار';
+
+  @override
+  String get filterRejected => 'مرفوض';
+
+  @override
+  String get noResultFound => 'لم يتم العثور على نتائج';
+
+  @override
+  String get noMedicalInfoProvided =>
+      'لم يتم تقديم أي معلومات طبية لهذا المريض.';
+
+  @override
+  String get adminRequestDetails => 'تفاصيل الطلب';
+
+  @override
+  String get adminServiceIntervention => 'الخدمة والتدخل';
+
+  @override
+  String get adminCreationDate => 'تاريخ الإنشاء';
+
+  @override
+  String get adminAppointmentDate => 'تاريخ الموعد';
+
+  @override
+  String get adminAssignedPro => 'المحترف المعين';
+
+  @override
+  String get adminNotYetAssigned => 'لم يتم التعيين بعد';
+
+  @override
+  String get adminRequestsMonitor => 'مراقب الطلبات';
+
+  @override
+  String get adminAllDates => 'كل التواريخ';
+
+  @override
+  String get adminThisWeek => 'هذا الأسبوع';
+
+  @override
+  String get adminThisMonth => 'هذا الشهر';
+
+  @override
+  String get proReviewsTitle => 'تقييماتي';
+
+  @override
+  String proReviewsOf(String name) {
+    return 'تقييمات $name';
+  }
+
+  @override
+  String get proNoReviewsYet => 'لا توجد تقييمات بعد';
+
+  @override
+  String get proNoReviewsProDesc => 'هذا المحترف لم يتلق أي تقييمات بعد.';
+
+  @override
+  String get proNoReviewsMeDesc =>
+      'ستظهر تقييماتك هنا بمجرد أن يقوم المرضى بتقييم تدخلاتك.';
+
+  @override
+  String get adminReviewTitle => 'مراجعة الملف';
+
+  @override
+  String get adminRejectionReasonTitle => 'سبب الرفض';
+
+  @override
+  String get adminRejectionHint => 'اشرح سبب رفض هذا الملف...';
+
+  @override
+  String get adminConfirmRejection => 'تأكيد الرفض';
+
+  @override
+  String get adminSupportingDocs => 'الوثائق الثبوتية';
+
+  @override
+  String get adminProAlreadyValidated => 'تم التحقق من هذا المحترف بالفعل';
+
+  @override
+  String get adminProAlreadyRejected => 'تم رفض هذا المحترف';
+
+  @override
+  String get adminServiceLabel => 'الخدمة';
+
+  @override
+  String get adminSpecTypeLabel => 'التخصص / النوع';
+
+  @override
+  String get adminNoOcrData => '⚠️ لا توجد بيانات OCR متاحة لهذا المستند.';
+
+  @override
+  String get adminRejectAction => 'رفض';
+
+  @override
+  String get adminValidateAction => 'قبول الملف';
+
+  @override
+  String get statusAwaitingPayment => 'في انتظار الدفع';
+
+  @override
+  String get adminRole => 'مدير النظام';
+
+  @override
+  String get filterConfirmed => 'مؤكد';
+
+  @override
+  String get filterInProgress => 'قيد التنفيذ';
+
+  @override
+  String get notSpecified => 'Non spécifié';
+
+  @override
+  String get notificationAdminNewProTitle => 'Dossier à valider';
+
+  @override
+  String notificationAdminNewProBody(Object name) {
+    return 'Le professionnel $name a soumis ses documents pour validation.';
+  }
+
+  @override
+  String get notificationAdminNewPatientTitle => 'Nouveau Patient';
+
+  @override
+  String notificationAdminNewPatientBody(Object name) {
+    return 'Un nouveau patient, $name, vient de créer son compte.';
+  }
+
+  @override
+  String get notificationAdminNewSosTitle => 'Nouvelle Alerte SOS';
+
+  @override
+  String notificationAdminNewSosBody(Object name) {
+    return 'Une nouvelle demande SOS a été créée par $name.';
+  }
 }

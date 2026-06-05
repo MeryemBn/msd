@@ -11,8 +11,8 @@ import '../../shared/providers/sos_provider.dart';
 import '../../shared/widgets/sos_selection_card.dart';
 import '../../shared/widgets/sos_address_step.dart';
 import '../../shared/widgets/sos_payment_step.dart';
-import '../../shared/widgets/sos_date_time_picker.dart';
 import '../../shared/widgets/sos_professional_step.dart';
+import '../../shared/widgets/sos_available_slots_picker.dart';
 
 class NurseRequestScreen extends ConsumerStatefulWidget {
   const NurseRequestScreen({super.key});
@@ -43,7 +43,7 @@ class _NurseRequestScreenState extends ConsumerState<NurseRequestScreen> {
   int get _totalSteps {
     final state = ref.read(sosProvider);
     final interventionType = state.currentRequest?.details.interventionDetails.interventionType;
-    return interventionType == InterventionType.appointment ? 4 : 3;
+    return interventionType == InterventionType.appointment ? 5 : 3;
   }
 
   void _nextStep(AppLocalizations l10n) {
@@ -55,9 +55,15 @@ class _NurseRequestScreenState extends ConsumerState<NurseRequestScreen> {
       return;
     }
     
-    if (interventionType == InterventionType.appointment && _currentStep == 3 && state.selectedProfessional == null) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.chooseProfessional)));
-      return;
+    if (interventionType == InterventionType.appointment) {
+      if (_currentStep == 3 && state.selectedProfessional == null) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.chooseProfessional)));
+        return;
+      }
+      if (_currentStep == 4 && state.currentRequest?.details.interventionDetails.appointmentDateTime == null) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.chooseTimeSlot)));
+        return;
+      }
     }
     
     if (_currentStep < _totalSteps) {
@@ -84,7 +90,6 @@ class _NurseRequestScreenState extends ConsumerState<NurseRequestScreen> {
     final sosState = ref.watch(sosProvider);
     final details = sosState.currentRequest?.details;
 
-    // SÉCURITÉ : Attendre l'initialisation du bon type
     if (sosState.currentType != SosType.nurse || details is! NurseDetails) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
@@ -125,7 +130,8 @@ class _NurseRequestScreenState extends ConsumerState<NurseRequestScreen> {
         case 1: return _buildRequestDetailsStep(l10n, details);
         case 2: return const SosAddressStep();
         case 3: return const SosProfessionalStep();
-        case 4: return const SosPaymentStep();
+        case 4: return _buildAvailableSlotsStep();
+        case 5: return const SosPaymentStep();
         default: return const SizedBox.shrink();
       }
     } else {
@@ -191,16 +197,26 @@ class _NurseRequestScreenState extends ConsumerState<NurseRequestScreen> {
             selectedBorderColor: isDark ? Colors.white : const Color(0xFF1A1A1A),
             onTap: () => ref.read(sosProvider.notifier).updateInterventionType(InterventionType.appointment),
           ),
-
-          if (interventionType == InterventionType.appointment) ...[
-            const SizedBox(height: 24),
-            SosDateTimePicker(
-              value: details.interventionDetails.appointmentDateTime,
-              onDateTimeChanged: (dt) => ref.read(sosProvider.notifier).updateAppointmentDateTime(dt),
-            ),
-          ],
         ],
       ),
+    );
+  }
+
+  Widget _buildAvailableSlotsStep() {
+    final sosState = ref.watch(sosProvider);
+    final selectedProfessional = sosState.selectedProfessional;
+    final details = sosState.currentRequest?.details as NurseDetails?;
+
+    if (selectedProfessional == null || details == null) {
+      return const Center(child: Text('Erreur: Aucun professionnel sélectionné'));
+    }
+
+    return SosAvailableSlotsPicker(
+      professionalId: selectedProfessional.id!,
+      selectedDateTime: details.interventionDetails.appointmentDateTime,
+      onSlotSelected: (dateTime) {
+        ref.read(sosProvider.notifier).updateAppointmentDateTime(dateTime);
+      },
     );
   }
 }

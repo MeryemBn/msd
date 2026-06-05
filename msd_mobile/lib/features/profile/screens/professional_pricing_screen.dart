@@ -72,7 +72,7 @@ class _ProfessionalPricingScreenState extends ConsumerState<ProfessionalPricingS
     }
   }
 
-  Future<void> _save(String serviceType, List<Map<String, dynamic>> configurations) async {
+  Future<void> _save(String serviceType, List<Map<String, dynamic>> configurations, AppLocalizations l10n) async {
     setState(() => _isSaving = true);
     try {
       final pricingService = ref.read(pricingServiceProvider);
@@ -84,7 +84,6 @@ class _ProfessionalPricingScreenState extends ConsumerState<ProfessionalPricingS
         final extraKmPrice = double.tryParse(_kmPriceControllers[key]?.text ?? "") ?? 0;
         final kmRadiusIncluded = int.tryParse(_kmRadiusControllers[key]?.text ?? "") ?? 0;
 
-        // Sauvegarde du mode principal (défini dans la config)
         await pricingService.setPrice(
           serviceType: config['serviceType'],
           specialty: _normalizeValue(config['specialty']),
@@ -95,7 +94,6 @@ class _ProfessionalPricingScreenState extends ConsumerState<ProfessionalPricingS
           kmRadiusIncluded: kmRadiusIncluded,
         );
 
-        // Pour les ambulances, on synchronise automatiquement RDV et Urgence
         if (config['serviceType'] == 'AMBULANCE') {
           final otherMode = config['mode'] == 'sos_urgency' ? 'appointment' : 'sos_urgency';
           await pricingService.setPrice(
@@ -111,7 +109,7 @@ class _ProfessionalPricingScreenState extends ConsumerState<ProfessionalPricingS
       }
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("Configurations enregistrées avec succès"), backgroundColor: AppTheme.primary),
+          SnackBar(content: Text(l10n.pricingSaveSuccess), backgroundColor: AppTheme.primary),
         );
         ref.invalidate(professionalPricesProvider);
       }
@@ -137,7 +135,7 @@ class _ProfessionalPricingScreenState extends ConsumerState<ProfessionalPricingS
     return Scaffold(
       backgroundColor: isDark ? const Color(0xFF0F111A) : const Color(0xFFF4F7F9),
       appBar: AppBar(
-        title: const Text("PILOTAGE DES TARIFS", style: TextStyle(fontWeight: FontWeight.w900, letterSpacing: 1)),
+        title: Text(l10n.pricingPilot, style: const TextStyle(fontWeight: FontWeight.w900, letterSpacing: 1)),
         centerTitle: true,
         elevation: 0,
       ),
@@ -149,9 +147,9 @@ class _ProfessionalPricingScreenState extends ConsumerState<ProfessionalPricingS
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildMarketInfo(),
+                _buildMarketInfo(l10n),
                 const SizedBox(height: 32),
-                ...configs.map((config) => _buildModuleCard(config, isDark)),
+                ...configs.map((config) => _buildModuleCard(config, isDark, l10n)),
                 const SizedBox(height: 40),
                 SizedBox(
                   width: double.infinity,
@@ -163,10 +161,10 @@ class _ProfessionalPricingScreenState extends ConsumerState<ProfessionalPricingS
                       elevation: 10,
                       shadowColor: AppTheme.primary.withOpacity(0.3),
                     ),
-                    onPressed: _isSaving ? null : () => _save(profile.serviceType!, configs),
+                    onPressed: _isSaving ? null : () => _save(profile.serviceType!, configs, l10n),
                     child: _isSaving 
                         ? const CircularProgressIndicator(color: Colors.white) 
-                        : const Text("METTRE À JOUR MES SERVICES", style: TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w900, letterSpacing: 1.2)),
+                        : Text(l10n.updateMyServices, style: const TextStyle(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w900, letterSpacing: 1.2)),
                   ),
                 ),
                 const SizedBox(height: 60),
@@ -180,7 +178,7 @@ class _ProfessionalPricingScreenState extends ConsumerState<ProfessionalPricingS
     );
   }
 
-  Widget _buildModuleCard(Map<String, dynamic> config, bool isDark) {
+  Widget _buildModuleCard(Map<String, dynamic> config, bool isDark, AppLocalizations l10n) {
     final key = config['key'];
     final error = _errors[key];
     final serviceType = config['serviceType']?.toString().toUpperCase();
@@ -226,7 +224,7 @@ class _ProfessionalPricingScreenState extends ConsumerState<ProfessionalPricingS
                 ),
                 const SizedBox(height: 28),
                 _buildInputField(
-                  label: "Tarif de la consultation",
+                  label: l10n.consultationFeeLabel,
                   controller: _priceControllers[key]!,
                   isDark: isDark,
                   icon: Icons.payments_rounded,
@@ -246,7 +244,7 @@ class _ProfessionalPricingScreenState extends ConsumerState<ProfessionalPricingS
                 children: [
                   Expanded(
                     child: _buildInputField(
-                      label: "Frais / KM",
+                      label: l10n.extraKmFee,
                       controller: _kmPriceControllers[key]!,
                       isDark: isDark,
                       icon: Icons.add_road_rounded,
@@ -255,7 +253,7 @@ class _ProfessionalPricingScreenState extends ConsumerState<ProfessionalPricingS
                   const SizedBox(width: 20),
                   Expanded(
                     child: _buildInputField(
-                      label: "Rayon inclus",
+                      label: l10n.includedRadius,
                       controller: _kmRadiusControllers[key]!,
                       isDark: isDark,
                       icon: Icons.radar_rounded,
@@ -316,14 +314,13 @@ class _ProfessionalPricingScreenState extends ConsumerState<ProfessionalPricingS
       for (var t in types) {
         final typeKey = t.trim().toUpperCase();
         String label = typeKey.contains('SMUR') ? l10n.ambSmur : typeKey.contains('REANIMATION') ? l10n.ambRea : typeKey.contains('SANITAIRE') ? l10n.ambSanitary : l10n.ambVsl;
-        // On n'affiche qu'une seule carte par type d'ambulance car les prix SOS et RDV sont désormais identiques
         c.add({'key': 'A_$t', 'label': label, 'mode': 'sos_urgency', 'serviceType': 'AMBULANCE', 'ambulanceType': t.trim(), 'icon': Icons.airport_shuttle_rounded});
       }
     }
     return c;
   }
 
-  Widget _buildMarketInfo() {
+  Widget _buildMarketInfo(AppLocalizations l10n) {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
@@ -339,8 +336,8 @@ class _ProfessionalPricingScreenState extends ConsumerState<ProfessionalPricingS
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("Liberté des Tarifs", style: TextStyle(fontWeight: FontWeight.w900, fontSize: 18)),
-                Text("Déterminez vos propres tarifs selon votre expertise et la qualité de vos services.", 
+                Text(l10n.pricingFreedom, style: const TextStyle(fontWeight: FontWeight.w900, fontSize: 18)),
+                Text(l10n.pricingFreedomDesc,
                   style: TextStyle(fontSize: 12, color: Colors.blueGrey.shade700, fontWeight: FontWeight.w500)),
               ],
             ),

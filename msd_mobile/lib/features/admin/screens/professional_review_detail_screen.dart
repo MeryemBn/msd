@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../app/app_theme.dart';
 import '../models/professional_review.dart';
 import '../providers/admin_provider.dart';
@@ -24,24 +25,24 @@ class _ProfessionalReviewDetailScreenState extends ConsumerState<ProfessionalRev
     super.dispose();
   }
 
-  void _showRejectionDialog() {
+  void _showRejectionDialog(AppLocalizations l10n) {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-        title: const Text('Motif du refus', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(l10n.adminRejectionReasonTitle, style: const TextStyle(fontWeight: FontWeight.bold)),
         content: TextField(
           controller: _rejectionController,
           maxLines: 4,
           decoration: InputDecoration(
-            hintText: 'Expliquez pourquoi ce dossier est rejeté...',
+            hintText: l10n.adminRejectionHint,
             filled: true,
             fillColor: Theme.of(context).brightness == Brightness.dark ? AppTheme.fieldBgDark : Colors.grey.shade100,
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(16), borderSide: BorderSide.none),
           ),
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Annuler')),
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.redAccent,
@@ -56,7 +57,7 @@ class _ProfessionalReviewDetailScreenState extends ConsumerState<ProfessionalRev
               Navigator.pop(context);
               context.pop();
             },
-            child: const Text('Confirmer le rejet', style: TextStyle(color: Colors.white)),
+            child: Text(l10n.adminConfirmRejection, style: const TextStyle(color: Colors.white)),
           ),
         ],
       ),
@@ -67,6 +68,8 @@ class _ProfessionalReviewDetailScreenState extends ConsumerState<ProfessionalRev
   Widget build(BuildContext context) {
     final review = widget.review;
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
+    final locale = Localizations.localeOf(context).languageCode;
     
     // Check if the professional is pending
     final isPending = review.status == ValidationStatus.PENDING;
@@ -80,29 +83,29 @@ class _ProfessionalReviewDetailScreenState extends ConsumerState<ProfessionalRev
           icon: Icon(Icons.arrow_back_ios_new_rounded, color: isDark ? Colors.white : AppTheme.textDark),
           onPressed: () => context.pop(),
         ),
-        title: Text('Vérification Dossier', style: TextStyle(color: isDark ? Colors.white : AppTheme.textDark, fontWeight: FontWeight.bold)),
+        title: Text(l10n.adminReviewTitle, style: TextStyle(color: isDark ? Colors.white : AppTheme.textDark, fontWeight: FontWeight.bold)),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildProfileSummary(review, isDark),
+            _buildProfileSummary(review, isDark, l10n),
             const SizedBox(height: 32),
             Row(
               children: [
                 const Icon(Icons.description_rounded, color: AppTheme.primary, size: 20),
                 const SizedBox(width: 8),
-                Text('Pièces Justificatives', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: isDark ? Colors.white : AppTheme.textDark)),
+                Text(l10n.adminSupportingDocs, style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800, color: isDark ? Colors.white : AppTheme.textDark)),
               ],
             ),
             const SizedBox(height: 16),
-            ...review.documents.map((doc) => _buildEnhancedDocCard(doc, isDark)).toList(),
+            ...review.documents.map((doc) => _buildEnhancedDocCard(doc, isDark, l10n, locale)).toList(),
             const SizedBox(height: 40),
             if (isPending) 
-              _buildActionButtons(isDark)
+              _buildActionButtons(isDark, l10n)
             else
-              _buildStatusBanner(review.status, isDark),
+              _buildStatusBanner(review.status, isDark, l10n),
             const SizedBox(height: 40),
           ],
         ),
@@ -110,7 +113,7 @@ class _ProfessionalReviewDetailScreenState extends ConsumerState<ProfessionalRev
     );
   }
 
-  Widget _buildStatusBanner(ValidationStatus status, bool isDark) {
+  Widget _buildStatusBanner(ValidationStatus status, bool isDark, AppLocalizations l10n) {
     final isValidated = status == ValidationStatus.VALIDATED;
     return Container(
       width: double.infinity,
@@ -124,11 +127,13 @@ class _ProfessionalReviewDetailScreenState extends ConsumerState<ProfessionalRev
         children: [
           Icon(isValidated ? Icons.check_circle : Icons.cancel, color: isValidated ? Colors.green : Colors.red),
           const SizedBox(width: 12),
-          Text(
-            isValidated ? "Ce professionnel est déjà validé" : "Ce professionnel a été rejeté",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              color: isValidated ? Colors.green.shade700 : Colors.red.shade700,
+          Expanded(
+            child: Text(
+              isValidated ? l10n.adminProAlreadyValidated : l10n.adminProAlreadyRejected,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: isValidated ? Colors.green.shade700 : Colors.red.shade700,
+              ),
             ),
           ),
         ],
@@ -136,7 +141,7 @@ class _ProfessionalReviewDetailScreenState extends ConsumerState<ProfessionalRev
     );
   }
 
-  Widget _buildProfileSummary(ProfessionalReview review, bool isDark) {
+  Widget _buildProfileSummary(ProfessionalReview review, bool isDark, AppLocalizations l10n) {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
@@ -159,18 +164,18 @@ class _ProfessionalReviewDetailScreenState extends ConsumerState<ProfessionalRev
           const SizedBox(height: 20),
           const Divider(),
           const SizedBox(height: 20),
-          _buildInfoGrid(review),
+          _buildInfoGrid(review, l10n),
         ],
       ),
     );
   }
 
-  Widget _buildInfoGrid(ProfessionalReview review) {
+  Widget _buildInfoGrid(ProfessionalReview review, AppLocalizations l10n) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        Expanded(child: _buildMiniInfo("Service", review.serviceType ?? 'N/A')),
-        Expanded(child: _buildMiniInfo("Spécialité / Type", review.specialty ?? review.ambulanceType ?? 'N/A')),
+        Expanded(child: _buildMiniInfo(l10n.adminServiceLabel, review.serviceType ?? 'N/A')),
+        Expanded(child: _buildMiniInfo(l10n.adminSpecTypeLabel, review.specialty ?? review.ambulanceType ?? 'N/A')),
       ],
     );
   }
@@ -189,7 +194,7 @@ class _ProfessionalReviewDetailScreenState extends ConsumerState<ProfessionalRev
     );
   }
 
-  Widget _buildEnhancedDocCard(doc, bool isDark) {
+  Widget _buildEnhancedDocCard(doc, bool isDark, AppLocalizations l10n, String locale) {
     String displayOcr = doc.ocrResult ?? "";
     if (displayOcr.contains("🔍 TEXTE BRUT EXTRAIT :")) {
       displayOcr = displayOcr.split("🔍 TEXTE BRUT EXTRAIT :")[0].trim();
@@ -219,7 +224,7 @@ class _ProfessionalReviewDetailScreenState extends ConsumerState<ProfessionalRev
                   child: Text(doc.documentType.replaceAll('_', ' '), 
                     style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),
                 ),
-                Text(DateFormat('dd MMM').format(doc.uploadedAt), style: const TextStyle(fontSize: 12, color: Colors.grey)),
+                Text(DateFormat('dd MMM', locale).format(doc.uploadedAt), style: const TextStyle(fontSize: 12, color: Colors.grey)),
               ],
             ),
           ),
@@ -265,7 +270,7 @@ class _ProfessionalReviewDetailScreenState extends ConsumerState<ProfessionalRev
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    displayOcr.isNotEmpty ? displayOcr : "⚠️ Aucune donnée OCR disponible pour ce document.",
+                    displayOcr.isNotEmpty ? displayOcr : l10n.adminNoOcrData,
                     style: TextStyle(
                       fontSize: 13, 
                       color: isDark ? Colors.blue.shade100 : Colors.blue.shade900, 
@@ -281,20 +286,20 @@ class _ProfessionalReviewDetailScreenState extends ConsumerState<ProfessionalRev
     );
   }
 
-  Widget _buildActionButtons(bool isDark) {
+  Widget _buildActionButtons(bool isDark, AppLocalizations l10n) {
     return Row(
       children: [
         Expanded(
           child: SizedBox(
             height: 56,
             child: OutlinedButton(
-              onPressed: _showRejectionDialog,
+              onPressed: () => _showRejectionDialog(l10n),
               style: OutlinedButton.styleFrom(
                 foregroundColor: Colors.redAccent, 
                 side: const BorderSide(color: Colors.redAccent, width: 2),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))
               ),
-              child: const Text('REJETER', style: TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.1)),
+              child: Text(l10n.adminRejectAction, style: const TextStyle(fontWeight: FontWeight.bold, letterSpacing: 1.1)),
             ),
           ),
         ),
@@ -313,7 +318,7 @@ class _ProfessionalReviewDetailScreenState extends ConsumerState<ProfessionalRev
                 shadowColor: AppTheme.primary.withOpacity(0.4),
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16))
               ),
-              child: const Text('VALIDER LE DOSSIER', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
+              child: Text(l10n.adminValidateAction, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold)),
             ),
           ),
         ),

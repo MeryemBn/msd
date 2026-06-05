@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../../app/app_theme.dart';
 import '../providers/admin_provider.dart';
+import '../../home/providers/notification_provider.dart';
 
 class AdminDashboardScreen extends ConsumerStatefulWidget {
   const AdminDashboardScreen({super.key});
@@ -29,67 +30,95 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
     final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        toolbarHeight: 20,
-      ),
-      body: state.isLoading
-          ? const Center(child: CircularProgressIndicator(color: AppTheme.primary))
-          : RefreshIndicator(
-              onRefresh: () => ref.read(adminProvider.notifier).loadDashboardData(),
-              child: CustomScrollView(
-                physics: const BouncingScrollPhysics(),
-                slivers: [
-                  SliverToBoxAdapter(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+      backgroundColor: isDark ? Colors.black : const Color(0xFFF8F9FA),
+      body: SafeArea(
+        child: state.isLoading
+            ? const Center(child: CircularProgressIndicator(color: AppTheme.primary))
+            : RefreshIndicator(
+                onRefresh: () => ref.read(adminProvider.notifier).loadDashboardData(),
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const SizedBox(height: 24),
+                      _buildHeader(context, l10n, isDark),
+                      const SizedBox(height: 24),
+                      Text(
+                        l10n.adminPlatformStatus.toUpperCase(), 
+                        style: TextStyle(
+                          fontSize: 12, 
+                          color: Colors.grey.shade500, 
+                          fontWeight: FontWeight.w900,
+                          letterSpacing: 1.2,
+                        )
+                      ),
+                      const SizedBox(height: 16),
+                      _buildQuickStats(stats, isDark, l10n),
+                      const SizedBox(height: 32),
+                      
+                      Text(
+                        l10n.adminManagementTools, 
+                        style: TextStyle(
+                          fontSize: 18, 
+                          fontWeight: FontWeight.bold, 
+                          color: isDark ? Colors.white : AppTheme.textDark
+                        )
+                      ),
+                      const SizedBox(height: 16),
+                      Row(
                         children: [
-                          _buildWelcomeSection(isDark, l10n),
-                          const SizedBox(height: 24),
-                          _buildQuickStats(stats, isDark, l10n),
-                          const SizedBox(height: 32),
-                          
-                          Text(l10n.adminManagementTools, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: isDark ? Colors.white : AppTheme.textDark)),
-                          const SizedBox(height: 16),
-                          Row(
-                            children: [
-                              Expanded(
-                                child: _buildToolCard(context, l10n.adminProfessionals, l10n.adminManageNetwork, Icons.badge_rounded, Colors.blue, '/admin/professionals', isDark),
-                              ),
-                              const SizedBox(width: 16),
-                              Expanded(
-                                child: _buildToolCard(context, l10n.adminPatients, l10n.adminFullList, Icons.people_rounded, Colors.purple, '/admin/patients', isDark),
-                              ),
-                            ],
+                          Expanded(
+                            child: _buildToolCard(context, l10n.adminProfessionals, l10n.adminManageNetwork, Icons.badge_rounded, Colors.blue, '/admin/professionals', isDark),
                           ),
-                          const SizedBox(height: 16),
-                          _buildToolCard(context, l10n.adminSosMonitor, l10n.adminLiveFlow, Icons.analytics_rounded, Colors.orange, '/admin/requests', isDark),
-                          
-                          const SizedBox(height: 32),
-                          _buildDistributionSection(stats, isDark, l10n),
-                          const SizedBox(height: 40),
+                          const SizedBox(width: 16),
+                          Expanded(
+                            child: _buildToolCard(context, l10n.adminPatients, l10n.adminFullList, Icons.people_rounded, Colors.purple, '/admin/patients', isDark),
+                          ),
                         ],
                       ),
-                    ),
+                      const SizedBox(height: 16),
+                      _buildToolCard(context, l10n.adminSosMonitor, l10n.adminLiveFlow, Icons.analytics_rounded, Colors.orange, '/admin/requests', isDark),
+                      
+                      const SizedBox(height: 32),
+                      _buildDistributionSection(stats, isDark, l10n),
+                      const SizedBox(height: 40),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
+      ),
     );
   }
 
-  Widget _buildWelcomeSection(bool isDark, AppLocalizations l10n) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+  Widget _buildHeader(BuildContext context, AppLocalizations l10n, bool isDark) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(l10n.adminWelcome, 
-          style: TextStyle(fontSize: 28, fontWeight: FontWeight.w800, color: isDark ? Colors.white : AppTheme.textDark)),
-        Text(l10n.adminPlatformStatus, 
-          style: TextStyle(fontSize: 14, color: Colors.grey.shade500)),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text(
+                  l10n.hello,
+                  style: const TextStyle(fontSize: 14, color: AppTheme.textGrey),
+                ),
+                const Text('👋', style: TextStyle(fontSize: 14)),
+              ],
+            ),
+            Text(
+              l10n.adminRole,
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.w700,
+                color: isDark ? Colors.white : AppTheme.textDark,
+              ),
+            ),
+          ],
+        ),
+        const _NotificationIcon(),
       ],
     );
   }
@@ -223,6 +252,65 @@ class _AdminDashboardScreenState extends ConsumerState<AdminDashboardScreen> {
               valueColor: AlwaysStoppedAnimation<Color>(color),
             ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class _NotificationIcon extends ConsumerWidget {
+  const _NotificationIcon();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notificationState = ref.watch(notificationProvider);
+    final unreadCount = notificationState.unreadCount;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+
+    return GestureDetector(
+      onTap: () => context.push('/notifications'),
+      child: Stack(
+        children: [
+          Container(
+            width: 44,
+            height: 44,
+            decoration: BoxDecoration(
+              color: isDark ? AppTheme.fieldBgDark : Colors.grey.shade100,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: Icon(
+              Icons.notifications_outlined, 
+              size: 22,
+              color: isDark ? Colors.white70 : AppTheme.textDark,
+            ),
+          ),
+          if (unreadCount > 0)
+            Positioned(
+              right: 6,
+              top: 6,
+              child: Container(
+                width: 18,
+                height: 18,
+                decoration: BoxDecoration(
+                  color: AppTheme.redAccent,
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: isDark ? const Color(0xFF121212) : Colors.white,
+                    width: 1.5,
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    unreadCount > 9 ? '9+' : unreadCount.toString(),
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ),
         ],
       ),
     );

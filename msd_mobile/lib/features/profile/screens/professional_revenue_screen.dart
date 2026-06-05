@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../../../app/app_theme.dart';
 import '../../../shared/widgets/section_header.dart';
 import '../providers/revenue_provider.dart';
@@ -14,11 +15,12 @@ class ProfessionalRevenueScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final revenueAsync = ref.watch(revenueStatsProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       backgroundColor: isDark ? Colors.black : const Color(0xFFF8F9FA),
       appBar: AppBar(
-        title: const Text("Tableau de Bord Financier", style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text(l10n.financialDashboard, style: const TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -32,29 +34,29 @@ class ProfessionalRevenueScreen extends ConsumerWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _buildRevenueOverview(context, stats),
+                _buildRevenueOverview(context, stats, l10n),
                 const SizedBox(height: 24),
-                _buildPricingActionCard(context),
+                _buildPricingActionCard(context, l10n),
                 const SizedBox(height: 32),
-                const SectionHeader(label: "Performance (6 derniers mois)"),
+                SectionHeader(label: l10n.performanceLast6Months),
                 const SizedBox(height: 20),
                 _buildMonthlyChart(context, stats),
                 const SizedBox(height: 32),
-                const SectionHeader(label: "Historique des Gains"),
+                SectionHeader(label: l10n.earningsHistory),
                 const SizedBox(height: 12),
-                _buildMonthlyList(context, stats),
+                _buildMonthlyList(context, stats, l10n),
                 const SizedBox(height: 40),
               ],
             ),
           ),
         ),
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, stack) => Center(child: Text("Erreur: $err")),
+        error: (err, stack) => Center(child: Text("${l10n.errorPrefix(err.toString())}")),
       ),
     );
   }
 
-  Widget _buildRevenueOverview(BuildContext context, RevenueStats stats) {
+  Widget _buildRevenueOverview(BuildContext context, RevenueStats stats, AppLocalizations l10n) {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
@@ -74,9 +76,9 @@ class ProfessionalRevenueScreen extends ConsumerWidget {
       ),
       child: Column(
         children: [
-          const Text(
-            "Chiffre d'affaires total",
-            style: TextStyle(color: Colors.white70, fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 0.5),
+          Text(
+            l10n.totalRevenue,
+            style: const TextStyle(color: Colors.white70, fontSize: 14, fontWeight: FontWeight.w500, letterSpacing: 0.5),
           ),
           const SizedBox(height: 8),
           FittedBox(
@@ -100,7 +102,7 @@ class ProfessionalRevenueScreen extends ConsumerWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildStatItem("Ce mois", "${stats.monthlyRevenue.toInt()} MAD"),
+                _buildStatItem(l10n.thisMonth, "${stats.monthlyRevenue.toInt()} MAD"),
                 Container(width: 1, height: 30, color: Colors.white24),
                 _buildStatItem("Missions", "${stats.totalMissions}"),
               ],
@@ -121,7 +123,7 @@ class ProfessionalRevenueScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildPricingActionCard(BuildContext context) {
+  Widget _buildPricingActionCard(BuildContext context, AppLocalizations l10n) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return GestureDetector(
       onTap: () => context.push('/pro-pricing'),
@@ -143,17 +145,17 @@ class ProfessionalRevenueScreen extends ConsumerWidget {
               child: const Icon(Icons.tune_rounded, color: AppTheme.primary),
             ),
             const SizedBox(width: 16),
-            const Expanded(
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Gestion des Tarifs",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                    l10n.pricingManagement,
+                    style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   Text(
-                    "Ajustez vos prix et limites",
-                    style: TextStyle(color: Colors.grey, fontSize: 13),
+                    l10n.adjustPricesAndLimits,
+                    style: const TextStyle(color: Colors.grey, fontSize: 13),
                   ),
                 ],
               ),
@@ -222,12 +224,12 @@ class ProfessionalRevenueScreen extends ConsumerWidget {
     );
   }
 
-  Widget _buildMonthlyList(BuildContext context, RevenueStats stats) {
+  Widget _buildMonthlyList(BuildContext context, RevenueStats stats, AppLocalizations l10n) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final reversedList = stats.revenueByMonth.reversed.toList();
 
     if (reversedList.isEmpty) {
-      return const Center(child: Text("Aucun gain enregistré.", style: TextStyle(color: Colors.grey)));
+      return Center(child: Text(l10n.noEarningsRecorded, style: const TextStyle(color: Colors.grey)));
     }
 
     return ListView.separated(

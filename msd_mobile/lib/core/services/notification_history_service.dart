@@ -18,9 +18,7 @@ class NotificationHistoryService {
       await Hive.openBox<NotificationItem>(_currentUserBoxName!);
     }
     
-    // Nettoyer les doublons hérités des anciennes versions (clés numériques vs IDs)
     await _migrateAndCleanup();
-    
     debugPrint("📦 Notification box initialized and cleaned for user: $userId");
   }
 
@@ -39,7 +37,6 @@ class NotificationHistoryService {
     final box = _box;
     if (box == null) return;
 
-    // Utilisation de l'ID comme clé UNIQUE (écrase l'existant si nécessaire)
     if (box.containsKey(item.id)) {
       final existing = box.get(item.id);
       if (existing != null && existing.isRead) return;
@@ -75,11 +72,9 @@ class NotificationHistoryService {
           await box.put(entry.key, entry.value);
         }
       }
-      debugPrint("🧹 ${oldKeysToDelete.length} résidus de notifications supprimés.");
     }
   }
 
-  /// Nettoie les notifications obsolètes (utilisé par le module médicaments)
   Future<void> cleanupNotifications(List<String> validIds) async {
     final box = _box;
     if (box == null) return;
@@ -97,7 +92,6 @@ class NotificationHistoryService {
 
     if (keysToDelete.isNotEmpty) {
       await box.deleteAll(keysToDelete);
-      debugPrint("🧹 ${keysToDelete.length} notifications obsolètes supprimées");
     }
   }
 
@@ -124,7 +118,14 @@ class NotificationHistoryService {
   List<NotificationItem> getTriggeredNotifications() {
     final now = DateTime.now();
     return getAllNotifications().where((item) {
-      if (item.type == 'sos' || item.type == 'appointment' || item.type == 'sos_status' || item.type == 'review') return true;
+      // Liste exhaustive des types instantanés (Patient, Pro et Admin)
+      const instantTypes = {
+        'sos', 'sos_status', 'sos_accepted', 'sos_rejected', 'sos_cancelled',
+        'appointment', 'review',
+        'admin_new_pro', 'admin_new_patient', 'admin_new_sos'
+      };
+      
+      if (instantTypes.contains(item.type)) return true;
       return !item.timestamp.isAfter(now);
     }).toList();
   }

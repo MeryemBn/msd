@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../l10n/app_localizations.dart';
 import '../../app/app_theme.dart';
+import '../../features/admin/providers/admin_provider.dart';
 
-class AdminBottomNavBar extends StatelessWidget {
+class AdminBottomNavBar extends ConsumerWidget {
   final Widget child;
 
   const AdminBottomNavBar({super.key, required this.child});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    // Watch adminProvider to keep polling active and reactive throughout the admin shell
+    ref.watch(adminProvider);
+
     final location = GoRouterState.of(context).matchedLocation;
     final l10n = AppLocalizations.of(context)!;
     

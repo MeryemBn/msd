@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../app/app_theme.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../providers/admin_provider.dart';
 
 class AdminProfessionalsScreen extends ConsumerStatefulWidget {
@@ -29,6 +30,7 @@ class _AdminProfessionalsScreenState extends ConsumerState<AdminProfessionalsScr
   Widget build(BuildContext context) {
     final state = ref.watch(adminProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
 
     final filteredPros = state.allProfessionals.where((pro) {
       final nameMatch = pro.fullName.toLowerCase().contains(_searchQuery.toLowerCase());
@@ -40,7 +42,7 @@ class _AdminProfessionalsScreenState extends ConsumerState<AdminProfessionalsScr
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text("Annuaire Professionnels"),
+        title: Text(l10n.proDirectory),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(110),
           child: Padding(
@@ -50,7 +52,7 @@ class _AdminProfessionalsScreenState extends ConsumerState<AdminProfessionalsScr
                 TextField(
                   onChanged: (val) => setState(() => _searchQuery = val),
                   decoration: InputDecoration(
-                    hintText: "Rechercher un nom...",
+                    hintText: l10n.searchProHint,
                     prefixIcon: const Icon(Icons.search),
                     filled: true,
                     fillColor: isDark ? AppTheme.fieldBgDark : Colors.white,
@@ -62,10 +64,10 @@ class _AdminProfessionalsScreenState extends ConsumerState<AdminProfessionalsScr
                   scrollDirection: Axis.horizontal,
                   child: Row(
                     children: [
-                      _buildFilterChip("TOUT", "ALL"),
-                      _buildFilterChip("VALIDÉS", "VALIDATED"),
-                      _buildFilterChip("EN ATTENTE", "PENDING"),
-                      _buildFilterChip("REJETÉS", "REJECTED"),
+                      _buildFilterChip(l10n.filterAll, "ALL"),
+                      _buildFilterChip(l10n.filterValidated, "VALIDATED"),
+                      _buildFilterChip(l10n.filterPending, "PENDING"),
+                      _buildFilterChip(l10n.filterRejected, "REJECTED"),
                     ],
                   ),
                 ),
@@ -77,7 +79,7 @@ class _AdminProfessionalsScreenState extends ConsumerState<AdminProfessionalsScr
       body: state.isLoading 
           ? const Center(child: CircularProgressIndicator())
           : filteredPros.isEmpty
-              ? _buildEmptyState()
+              ? _buildEmptyState(l10n)
               : RefreshIndicator(
                   onRefresh: () => ref.read(adminProvider.notifier).loadAllProfessionals(),
                   child: ListView.builder(
@@ -85,7 +87,7 @@ class _AdminProfessionalsScreenState extends ConsumerState<AdminProfessionalsScr
                     itemCount: filteredPros.length,
                     itemBuilder: (context, index) {
                       final pro = filteredPros[index];
-                      return _buildProCard(context, pro, isDark);
+                      return _buildProCard(context, pro, isDark, l10n);
                     },
                   ),
                 ),
@@ -107,13 +109,23 @@ class _AdminProfessionalsScreenState extends ConsumerState<AdminProfessionalsScr
     );
   }
 
-  Widget _buildProCard(BuildContext context, pro, bool isDark) {
+  Widget _buildProCard(BuildContext context, pro, bool isDark, AppLocalizations l10n) {
     final statusStr = pro.status.toString().split('.').last.toUpperCase();
+    String displayStatus;
     Color statusColor;
+    
     switch (statusStr) {
-      case 'VALIDATED': statusColor = Colors.green; break;
-      case 'REJECTED': statusColor = Colors.red; break;
-      default: statusColor = Colors.orange;
+      case 'VALIDATED': 
+        statusColor = Colors.green; 
+        displayStatus = l10n.validated;
+        break;
+      case 'REJECTED': 
+        statusColor = Colors.red; 
+        displayStatus = l10n.rejected;
+        break;
+      default: 
+        statusColor = Colors.orange;
+        displayStatus = l10n.pending;
     }
 
     return Card(
@@ -134,7 +146,7 @@ class _AdminProfessionalsScreenState extends ConsumerState<AdminProfessionalsScr
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
               decoration: BoxDecoration(color: statusColor.withOpacity(0.1), borderRadius: BorderRadius.circular(4)),
-              child: Text(statusStr, style: TextStyle(color: statusColor, fontSize: 9, fontWeight: FontWeight.bold)),
+              child: Text(displayStatus.toUpperCase(), style: TextStyle(color: statusColor, fontSize: 9, fontWeight: FontWeight.bold)),
             ),
           ],
         ),
@@ -144,7 +156,7 @@ class _AdminProfessionalsScreenState extends ConsumerState<AdminProfessionalsScr
     );
   }
 
-  Widget _buildEmptyState() {
-    return const Center(child: Text("Aucun résultat trouvé"));
+  Widget _buildEmptyState(AppLocalizations l10n) {
+    return Center(child: Text(l10n.noResultFound));
   }
 }

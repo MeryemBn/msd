@@ -142,7 +142,8 @@ class _NotificationTile extends StatelessWidget {
       case 'sos':
       case 'appointment':
       case 'sos_status':
-        iconData = (notification.type == 'sos' || notification.type == 'sos_status') 
+      case 'admin_new_sos':
+        iconData = (notification.type == 'sos' || notification.type == 'sos_status' || notification.type == 'admin_new_sos') 
             ? Icons.emergency_outlined 
             : Icons.calendar_today_rounded;
         iconColor = AppTheme.orangeAccent;
@@ -152,6 +153,16 @@ class _NotificationTile extends StatelessWidget {
         iconData = Icons.star_rounded;
         iconColor = Colors.amber;
         bgColor = isDark ? const Color(0xFF3D351F) : const Color(0xFFFFFBE6);
+        break;
+      case 'admin_new_pro':
+        iconData = Icons.person_add_alt_1_rounded;
+        iconColor = AppTheme.primary;
+        bgColor = isDark ? const Color(0xFF1A3835) : const Color(0xFFE8F8F6);
+        break;
+      case 'admin_new_patient':
+        iconData = Icons.person_outline_rounded;
+        iconColor = Colors.blue;
+        bgColor = isDark ? const Color(0xFF1F2E3D) : const Color(0xFFF2F8FF);
         break;
       case 'medication':
       default:
@@ -212,7 +223,7 @@ class _NotificationTile extends StatelessWidget {
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 15,
-                          color: notification.type == 'medication' ? AppTheme.primary : null,
+                          color: (notification.type == 'medication' || notification.type == 'admin_new_pro') ? AppTheme.primary : null,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,

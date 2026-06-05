@@ -168,6 +168,7 @@ class UserProfile {
   final double averageRating;
   final int totalReviews;
   final int completedMissionsCount;
+  final DateTime? createdAt;
 
   const UserProfile({
     this.id,
@@ -194,6 +195,7 @@ class UserProfile {
     this.averageRating = 0.0,
     this.totalReviews = 0,
     this.completedMissionsCount = 0,
+    this.createdAt,
   });
 
   factory UserProfile.fromJson(Map<String, dynamic> json) => UserProfile(
@@ -225,6 +227,7 @@ class UserProfile {
     averageRating: (json['averageRating'] ?? 0.0).toDouble(),
     totalReviews: json['totalReviews'] ?? 0,
     completedMissionsCount: json['completedMissionsCount'] ?? 0,
+    createdAt: json['createdAt'] != null ? DateTime.parse(json['createdAt']).toLocal() : null,
   );
 
   Map<String, dynamic> toJson() => {
@@ -252,6 +255,7 @@ class UserProfile {
     'averageRating': averageRating,
     'totalReviews': totalReviews,
     'completedMissionsCount': completedMissionsCount,
+    'createdAt': createdAt?.toIso8601String(),
   };
 
   String get fullName => '$firstName $lastName'.trim().isNotEmpty 
@@ -283,6 +287,7 @@ class UserProfile {
     double? averageRating,
     int? totalReviews,
     int? completedMissionsCount,
+    DateTime? createdAt,
   }) {
     return UserProfile(
       id: id ?? this.id,
@@ -309,6 +314,7 @@ class UserProfile {
       averageRating: averageRating ?? this.averageRating,
       totalReviews: totalReviews ?? this.totalReviews,
       completedMissionsCount: completedMissionsCount ?? this.completedMissionsCount,
+      createdAt: createdAt ?? this.createdAt,
     );
   }
 }

@@ -75,7 +75,7 @@ class _ProfileScreenState extends ConsumerState<ProfileScreen> {
     final bool isPatient = authRole == 'patient';
     final bool isPro = authRole == 'professional' || (user?.isProfessional == true && !isPatient && !isAdmin);
     
-    final roleLabel = isAdmin ? "Administrateur" : (isPro ? l10n.professional : l10n.iAmPatient);
+    final roleLabel = isAdmin ? l10n.adminRole : (isPro ? l10n.professional : l10n.iAmPatient);
 
     if (profileState.isLoading && user == null) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));

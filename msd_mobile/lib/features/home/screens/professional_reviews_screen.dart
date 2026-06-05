@@ -37,7 +37,6 @@ class _ProfessionalReviewsScreenState extends ConsumerState<ProfessionalReviewsS
           ? await sosService.getReviewsByProfessionalId(widget.professionalId!)
           : await sosService.getMyProfessionalReviews();
       
-      // Tri par date décroissante (plus récent en haut)
       reviews.sort((a, b) => b.createdAt.compareTo(a.createdAt));
       
       if (mounted) {
@@ -60,9 +59,11 @@ class _ProfessionalReviewsScreenState extends ConsumerState<ProfessionalReviewsS
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final locale = Localizations.localeOf(context).languageCode;
+    
     final title = widget.professionalName != null 
-        ? "Avis sur ${widget.professionalName}" 
-        : "Mes Avis";
+        ? l10n.proReviewsOf(widget.professionalName!) 
+        : l10n.proReviewsTitle;
 
     return Scaffold(
       appBar: AppBar(
@@ -72,36 +73,36 @@ class _ProfessionalReviewsScreenState extends ConsumerState<ProfessionalReviewsS
       body: _isLoading
           ? const Center(child: CircularProgressIndicator(color: AppTheme.primary))
           : _error != null
-              ? Center(child: Text(_error!, style: const TextStyle(color: Colors.red)))
+              ? Center(child: Text(l10n.errorPrefix(_error!)))
               : (_reviews == null || _reviews!.isEmpty)
-                  ? _buildEmptyState(context, isDark)
+                  ? _buildEmptyState(context, isDark, l10n)
                   : ListView.separated(
                       padding: const EdgeInsets.all(20),
                       itemCount: _reviews!.length,
                       separatorBuilder: (context, index) => const SizedBox(height: 16),
-                      itemBuilder: (context, index) => _ReviewCard(review: _reviews![index]),
+                      itemBuilder: (context, index) => _ReviewCard(review: _reviews![index], locale: locale),
                     ),
     );
   }
 
-  Widget _buildEmptyState(BuildContext context, bool isDark) {
+  Widget _buildEmptyState(BuildContext context, bool isDark, AppLocalizations l10n) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(Icons.rate_review_outlined, size: 64, color: isDark ? Colors.white12 : Colors.grey.shade300),
           const SizedBox(height: 16),
-          const Text(
-            "Aucun avis pour le moment",
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppTheme.textGrey),
+          Text(
+            l10n.proNoReviewsYet,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: AppTheme.textGrey),
           ),
           const SizedBox(height: 8),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 40),
             child: Text(
               widget.professionalId != null 
-                ? "Ce professionnel n'a pas encore reçu d'évaluations."
-                : "Vos évaluations apparaîtront ici dès que les patients auront noté vos interventions.",
+                ? l10n.proNoReviewsProDesc
+                : l10n.proNoReviewsMeDesc,
               textAlign: TextAlign.center,
               style: const TextStyle(color: AppTheme.textGrey),
             ),
@@ -114,12 +115,13 @@ class _ProfessionalReviewsScreenState extends ConsumerState<ProfessionalReviewsS
 
 class _ReviewCard extends StatelessWidget {
   final Review review;
-  const _ReviewCard({required this.review});
+  final String locale;
+  const _ReviewCard({required this.review, required this.locale});
 
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final formattedDate = DateFormat('dd MMM yyyy HH:mm', 'fr').format(review.createdAt);
+    final formattedDate = DateFormat('dd MMM yyyy HH:mm', locale).format(review.createdAt);
 
     return Container(
       padding: const EdgeInsets.all(16),

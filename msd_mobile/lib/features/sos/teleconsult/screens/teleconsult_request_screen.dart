@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../l10n/app_localizations.dart';
 import '../../../../shared/widgets/step_progress_bar.dart';
 import '../../../../shared/widgets/msd_button.dart';
+import '../../../../app/app_theme.dart';
 import '../../shared/models/sos_enums.dart';
 import '../../shared/models/sos_type.dart';
 import '../../shared/models/request_details.dart';
@@ -11,17 +12,19 @@ import '../../shared/providers/sos_provider.dart';
 import '../../shared/widgets/sos_selection_card.dart';
 import '../../shared/widgets/sos_dropdown_field.dart';
 import '../../shared/widgets/sos_payment_step.dart';
-import '../../shared/widgets/sos_date_time_picker.dart';
 import '../../shared/widgets/sos_professional_step.dart';
+import '../../shared/widgets/sos_available_slots_picker.dart';
 
 class TeleconsultRequestScreen extends ConsumerStatefulWidget {
   const TeleconsultRequestScreen({super.key});
 
   @override
-  ConsumerState<TeleconsultRequestScreen> createState() => _TeleconsultRequestScreenState();
+  ConsumerState<TeleconsultRequestScreen> createState() =>
+      _TeleconsultRequestScreenState();
 }
 
-class _TeleconsultRequestScreenState extends ConsumerState<TeleconsultRequestScreen> {
+class _TeleconsultRequestScreenState
+    extends ConsumerState<TeleconsultRequestScreen> {
   int _currentStep = 1;
 
   @override
@@ -29,30 +32,49 @@ class _TeleconsultRequestScreenState extends ConsumerState<TeleconsultRequestScr
     super.initState();
     Future.microtask(() {
       ref.read(sosProvider.notifier).initNewRequest(
-            TeleconsultDetails(
-              interventionDetails: InterventionDetails(
-                interventionType: InterventionType.appointment,
-              ),
-              specialty: Specialty.medecineGenerale,
-            ),
-            200.0,
-            SosType.teleconsult,
-          );
+        TeleconsultDetails(
+          interventionDetails: InterventionDetails(
+            interventionType: InterventionType.appointment,
+          ),
+          specialty: Specialty.medecineGenerale,
+        ),
+        200.0,
+        SosType.teleconsult,
+      );
     });
   }
 
-  int get _totalSteps => 3;
+  /// Pour la téléconsultation, c'est toujours 4 étapes (détails → professionnel → créneaux → paiement)
+  int get _totalSteps => 4;
 
   void _nextStep(AppLocalizations l10n) {
     final state = ref.read(sosProvider);
-    if (_currentStep == 1 && state.currentRequest?.details.interventionDetails.appointmentDateTime == null) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.chooseDate)));
-      return;
+
+    // Étape 2 : vérifier qu'un professionnel est sélectionné
+    if (_currentStep == 2) {
+      if (state.selectedProfessional == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(l10n.chooseProfessional)),
+        );
+        return;
+      }
     }
-    if (_currentStep == 2 && state.selectedProfessional == null) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.chooseProfessional)));
-      return;
+
+    // Étape 3 : vérifier qu'un créneau est sélectionné
+    if (_currentStep == 3) {
+      if (state.currentRequest?.details.interventionDetails.appointmentDateTime ==
+          null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(
+              l10n.chooseTimeSlot,
+            ),
+          ),
+        );
+        return;
+      }
     }
+
     if (_currentStep < _totalSteps) {
       setState(() => _currentStep++);
     } else {
@@ -60,14 +82,17 @@ class _TeleconsultRequestScreenState extends ConsumerState<TeleconsultRequestScr
     }
   }
 
-  void _prevStep() => _currentStep > 1 ? setState(() => _currentStep--) : Navigator.pop(context);
+  void _prevStep() =>
+      _currentStep > 1 ? setState(() => _currentStep--) : Navigator.pop(context);
 
   void _submitRequest(AppLocalizations l10n) {
     ref.read(sosProvider.notifier).submitRequest().then((_) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.requestSent)));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(l10n.requestSent)));
       Navigator.pop(context);
     }).catchError((e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(e.toString())));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(e.toString())));
     });
   }
 
@@ -75,9 +100,10 @@ class _TeleconsultRequestScreenState extends ConsumerState<TeleconsultRequestScr
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context)!;
     final sosState = ref.watch(sosProvider);
-    final details = sosState.currentRequest?.details;
 
-    if (sosState.currentType != SosType.teleconsult || details is! TeleconsultDetails) {
+    // Sécurité : attendre l'initialisation du bon type
+    if (sosState.currentType != SosType.teleconsult ||
+        sosState.currentRequest?.details is! TeleconsultDetails) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
 
@@ -87,18 +113,24 @@ class _TeleconsultRequestScreenState extends ConsumerState<TeleconsultRequestScr
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: StepProgressBar(currentStep: _currentStep, totalSteps: _totalSteps, onBack: _prevStep),
+              child: StepProgressBar(
+                currentStep: _currentStep,
+                totalSteps: _totalSteps,
+                onBack: _prevStep,
+              ),
             ),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: _buildStepContent(l10n, details),
+                child: _buildStepContent(l10n),
               ),
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: MsdButton(
-                text: _currentStep == _totalSteps ? l10n.confirmRequest : l10n.continueText,
+                text: _currentStep == _totalSteps
+                    ? l10n.confirmRequest
+                    : l10n.continueText,
                 onPressed: () => _nextStep(l10n),
                 isLoading: sosState.isLoading,
               ),
@@ -109,56 +141,103 @@ class _TeleconsultRequestScreenState extends ConsumerState<TeleconsultRequestScr
     );
   }
 
-  Widget _buildStepContent(AppLocalizations l10n, TeleconsultDetails details) {
+  Widget _buildStepContent(AppLocalizations l10n) {
+    // Flux téléconsultation : toujours 4 étapes
     switch (_currentStep) {
-      case 1: return _buildRequestDetailsStep(l10n, details);
-      case 2: return const SosProfessionalStep();
-      case 3: return const SosPaymentStep();
-      default: return const SizedBox.shrink();
+      case 1:
+        return _buildRequestDetailsStep(l10n);
+      case 2:
+        return const SosProfessionalStep();
+      case 3:
+        return _buildAvailableSlotsStep();
+      case 4:
+        return const SosPaymentStep();
+      default:
+        return const SizedBox.shrink();
     }
   }
 
-  Widget _buildRequestDetailsStep(AppLocalizations l10n, TeleconsultDetails details) {
+  Widget _buildRequestDetailsStep(AppLocalizations l10n) {
+    final sosState = ref.watch(sosProvider);
+    final details = sosState.currentRequest?.details as TeleconsultDetails?;
+    if (details == null) return const SizedBox.shrink();
+
     final isDark = Theme.of(context).brightness == Brightness.dark;
+
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(l10n.yourRequest, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+          Text(
+            l10n.yourRequest,
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
           const SizedBox(height: 8),
-          Text(l10n.specifyTeleconsult, style: TextStyle(color: isDark ? Colors.white60 : Colors.grey, fontSize: 14)),
+          Text(
+            l10n.specifyTeleconsult,
+            style: TextStyle(
+              color: isDark ? Colors.white60 : Colors.grey,
+              fontSize: 14,
+            ),
+          ),
           const SizedBox(height: 24),
+
+          // Spécialité
           SosDropdownField<Specialty>(
             label: l10n.specialty,
             hint: l10n.chooseSpecialty,
             value: details.specialty,
-            items: Specialty.values.where((s) => s != Specialty.soinsADomicile).toList(),
+            items: Specialty.values
+                .where((s) => s != Specialty.soinsADomicile)
+                .toList(),
             itemLabelBuilder: (s) => s.getLabel(l10n),
             prefixIcon: Icons.videocam_outlined,
             onChanged: (val) {
               if (val != null) ref.read(sosProvider.notifier).updateSpecialty(val);
             },
           ),
+
           const SizedBox(height: 32),
-          Text(l10n.interventionType, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+
+          // Type d'intervention (Fixé sur rendez-vous)
+          Text(
+            l10n.interventionType,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          ),
           const SizedBox(height: 12),
+
           SosSelectionCard(
             title: l10n.appointment,
             subtitle: l10n.appointmentDesc,
             icon: Icons.calendar_today,
             iconColor: isDark ? Colors.white : const Color(0xFF1A1A1A),
-            iconBackgroundColor: isDark ? Colors.white10 : Colors.grey.shade100,
+            iconBackgroundColor:
+            isDark ? Colors.white10 : Colors.grey.shade100,
             isSelected: true,
-            selectedBorderColor: isDark ? Colors.white : const Color(0xFF1A1A1A),
-            onTap: () {},
-          ),
-          const SizedBox(height: 24),
-          SosDateTimePicker(
-            value: details.interventionDetails.appointmentDateTime,
-            onDateTimeChanged: (dt) => ref.read(sosProvider.notifier).updateAppointmentDateTime(dt),
+            selectedBorderColor: AppTheme.primary,
+            onTap: () {}, // Déjà sélectionné par défaut
           ),
         ],
       ),
+    );
+  }
+
+  /// Même logique que DoctorRequestScreen._buildAvailableSlotsStep()
+  Widget _buildAvailableSlotsStep() {
+    final sosState = ref.watch(sosProvider);
+    final selectedProfessional = sosState.selectedProfessional;
+    final details = sosState.currentRequest?.details as TeleconsultDetails?;
+
+    if (selectedProfessional == null || details == null) {
+      return const Center(child: Text('Erreur: Aucun professionnel sélectionné'));
+    }
+
+    return SosAvailableSlotsPicker(
+      professionalId: selectedProfessional.id!,
+      selectedDateTime: details.interventionDetails.appointmentDateTime,
+      onSlotSelected: (dateTime) {
+        ref.read(sosProvider.notifier).updateAppointmentDateTime(dateTime);
+      },
     );
   }
 }

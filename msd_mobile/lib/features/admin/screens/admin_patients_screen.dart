@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../app/app_theme.dart';
+import '../../../../l10n/app_localizations.dart';
 import '../providers/admin_provider.dart';
 import '../../profile/models/medical_record.dart';
 
@@ -22,15 +23,7 @@ class _AdminPatientsScreenState extends ConsumerState<AdminPatientsScreen> {
     });
   }
 
-  void _showPatientDetails(patient) {
-    // Debug pour voir ce que l'on reçoit réellement
-    print("Patient Medical Records Count: ${patient.medicalRecords?.length}");
-    if (patient.medicalRecords != null) {
-      for (var r in patient.medicalRecords) {
-        print("Record: Type=${r.type}, Desc=${r.description}");
-      }
-    }
-
+  void _showPatientDetails(patient, AppLocalizations l10n) {
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -68,23 +61,23 @@ class _AdminPatientsScreenState extends ConsumerState<AdminPatientsScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text("${patient.firstName ?? ''} ${patient.lastName ?? ''}", style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                              Text(patient.email ?? "Pas d'email", style: const TextStyle(color: Colors.grey)),
+                              Text(patient.email ?? "N/A", style: const TextStyle(color: Colors.grey)),
                             ],
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 32),
-                    const Text("Informations Personnelles", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                    Text(l10n.personalInfo, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 16),
-                    _buildDetailRow(Icons.phone_rounded, "Téléphone", patient.phoneNumber ?? "Non renseigné"),
-                    _buildDetailRow(Icons.location_on_rounded, "Adresse", patient.address ?? "Non renseignée"),
-                    _buildDetailRow(Icons.location_city_rounded, "Ville", patient.city ?? "Non renseignée"),
+                    _buildDetailRow(Icons.phone_rounded, l10n.phone, patient.phoneNumber ?? "N/A"),
+                    _buildDetailRow(Icons.location_on_rounded, l10n.address, patient.address ?? "N/A"),
+                    _buildDetailRow(Icons.location_city_rounded, l10n.city, patient.city ?? "N/A"),
                     
                     const SizedBox(height: 24),
-                    const Text("Informations Médicales", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                    Text(l10n.medicalInfo, style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                     const SizedBox(height: 16),
-                    _buildMedicalSection(patient.medicalRecords ?? []),
+                    _buildMedicalSection(patient.medicalRecords ?? [], l10n),
                     const SizedBox(height: 24),
                   ],
                 ),
@@ -96,8 +89,7 @@ class _AdminPatientsScreenState extends ConsumerState<AdminPatientsScreen> {
     );
   }
 
-  Widget _buildMedicalSection(List<MedicalRecord> records) {
-    // On normalize les types en majuscules pour éviter les problèmes de casse
+  Widget _buildMedicalSection(List<MedicalRecord> records, AppLocalizations l10n) {
     final bloodType = records.where((r) => r.type.toUpperCase() == 'BLOOD_TYPE').map((r) => r.description).firstOrNull;
     final allergies = records.where((r) => r.type.toUpperCase() == 'ALLERGY').map((r) => r.description).where((d) => d.trim().isNotEmpty).toList();
     final history = records.where((r) => r.type.toUpperCase() == 'MEDICAL_HISTORY').map((r) => r.description).where((d) => d.trim().isNotEmpty).toList();
@@ -110,14 +102,14 @@ class _AdminPatientsScreenState extends ConsumerState<AdminPatientsScreen> {
           color: Colors.grey.withOpacity(0.05),
           borderRadius: BorderRadius.circular(12),
         ),
-        child: const Row(
+        child: Row(
           children: [
-            Icon(Icons.info_outline, color: Colors.grey, size: 20),
-            SizedBox(width: 12),
+            const Icon(Icons.info_outline, color: Colors.grey, size: 20),
+            const SizedBox(width: 12),
             Expanded(
               child: Text(
-                "Aucune information médicale renseignée pour ce patient.",
-                style: TextStyle(fontStyle: FontStyle.italic, color: Colors.grey, fontSize: 13),
+                l10n.noMedicalInfoProvided,
+                style: const TextStyle(fontStyle: FontStyle.italic, color: Colors.grey, fontSize: 13),
               ),
             ),
           ],
@@ -128,16 +120,16 @@ class _AdminPatientsScreenState extends ConsumerState<AdminPatientsScreen> {
     return Column(
       children: [
         if (bloodType != null)
-          _buildDetailRow(Icons.water_drop_outlined, "Groupe Sanguin", bloodType, color: Colors.redAccent),
+          _buildDetailRow(Icons.water_drop_outlined, l10n.bloodType, bloodType, color: Colors.redAccent),
         
         if (allergies.isNotEmpty)
-          _buildChipsSection("Allergies", allergies, Icons.warning_amber_rounded, Colors.orange),
+          _buildChipsSection(l10n.allergies, allergies, Icons.warning_amber_rounded, Colors.orange),
           
         if (history.isNotEmpty)
-          _buildChipsSection("Historique", history, Icons.history, Colors.blue),
+          _buildChipsSection(l10n.history, history, Icons.history, Colors.blue),
           
         if (chronic.isNotEmpty)
-          _buildChipsSection("Maladies Chroniques", chronic, Icons.favorite_border_rounded, Colors.red),
+          _buildChipsSection(l10n.chronicDiseases, chronic, Icons.favorite_border_rounded, Colors.red),
       ],
     );
   }
@@ -210,6 +202,7 @@ class _AdminPatientsScreenState extends ConsumerState<AdminPatientsScreen> {
   Widget build(BuildContext context) {
     final state = ref.watch(adminProvider);
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final l10n = AppLocalizations.of(context)!;
 
     final filteredPatients = state.allPatients.where((p) {
       final fullName = "${p.firstName ?? ''} ${p.lastName ?? ''}".toLowerCase();
@@ -220,7 +213,7 @@ class _AdminPatientsScreenState extends ConsumerState<AdminPatientsScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Text("Liste des Patients"),
+        title: Text(l10n.adminPatientsList),
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(70),
           child: Padding(
@@ -228,7 +221,7 @@ class _AdminPatientsScreenState extends ConsumerState<AdminPatientsScreen> {
             child: TextField(
               onChanged: (val) => setState(() => _searchQuery = val),
               decoration: InputDecoration(
-                hintText: "Rechercher un patient...",
+                hintText: l10n.searchPatientHint,
                 prefixIcon: const Icon(Icons.search),
                 filled: true,
                 fillColor: isDark ? AppTheme.fieldBgDark : Colors.white,
@@ -241,7 +234,7 @@ class _AdminPatientsScreenState extends ConsumerState<AdminPatientsScreen> {
       body: state.isLoading 
           ? const Center(child: CircularProgressIndicator())
           : filteredPatients.isEmpty
-              ? _buildEmptyState()
+              ? _buildEmptyState(l10n)
               : RefreshIndicator(
                   onRefresh: () => ref.read(adminProvider.notifier).loadAllPatients(),
                   child: ListView.builder(
@@ -249,14 +242,14 @@ class _AdminPatientsScreenState extends ConsumerState<AdminPatientsScreen> {
                     itemCount: filteredPatients.length,
                     itemBuilder: (context, index) {
                       final patient = filteredPatients[index];
-                      return _buildPatientCard(patient, isDark);
+                      return _buildPatientCard(patient, isDark, l10n);
                     },
                   ),
                 ),
     );
   }
 
-  Widget _buildPatientCard(patient, bool isDark) {
+  Widget _buildPatientCard(patient, bool isDark, AppLocalizations l10n) {
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -270,20 +263,20 @@ class _AdminPatientsScreenState extends ConsumerState<AdminPatientsScreen> {
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(patient.email ?? "Pas d'email", style: const TextStyle(fontSize: 12)),
+            Text(patient.email ?? "N/A", style: const TextStyle(fontSize: 12)),
             if (patient.phoneNumber != null)
               Text(patient.phoneNumber!, style: const TextStyle(fontSize: 11, color: Colors.grey)),
           ],
         ),
         trailing: const Icon(Icons.chevron_right),
-        onTap: () => _showPatientDetails(patient),
+        onTap: () => _showPatientDetails(patient, l10n),
       ),
     );
   }
 
-  Widget _buildEmptyState() {
-    return const Center(
-      child: Text("Aucun patient trouvé"),
+  Widget _buildEmptyState(AppLocalizations l10n) {
+    return Center(
+      child: Text(l10n.noPatientFound),
     );
   }
 }

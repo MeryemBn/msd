@@ -1465,7 +1465,7 @@ abstract class AppLocalizations {
   /// No description provided for @filterAll.
   ///
   /// In fr, this message translates to:
-  /// **'Tous'**
+  /// **'TOUT'**
   String get filterAll;
 
   /// No description provided for @filterOngoing.
@@ -1477,7 +1477,7 @@ abstract class AppLocalizations {
   /// No description provided for @filterCompleted.
   ///
   /// In fr, this message translates to:
-  /// **'Terminés'**
+  /// **'TERMINÉS'**
   String get filterCompleted;
 
   /// No description provided for @filterCancelled.
@@ -2517,6 +2517,390 @@ abstract class AppLocalizations {
   /// In fr, this message translates to:
   /// **'Consulter'**
   String get chatbotConsult;
+
+  /// No description provided for @financialDashboard.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tableau de Bord Financier'**
+  String get financialDashboard;
+
+  /// No description provided for @performanceLast6Months.
+  ///
+  /// In fr, this message translates to:
+  /// **'Performance (6 derniers mois)'**
+  String get performanceLast6Months;
+
+  /// No description provided for @earningsHistory.
+  ///
+  /// In fr, this message translates to:
+  /// **'Historique des Gains'**
+  String get earningsHistory;
+
+  /// No description provided for @totalRevenue.
+  ///
+  /// In fr, this message translates to:
+  /// **'Chiffre d\'affaires total'**
+  String get totalRevenue;
+
+  /// No description provided for @thisMonth.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce mois'**
+  String get thisMonth;
+
+  /// No description provided for @pricingManagement.
+  ///
+  /// In fr, this message translates to:
+  /// **'Gestion des Tarifs'**
+  String get pricingManagement;
+
+  /// No description provided for @adjustPricesAndLimits.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ajustez vos prix et limites'**
+  String get adjustPricesAndLimits;
+
+  /// No description provided for @noEarningsRecorded.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun gain enregistré.'**
+  String get noEarningsRecorded;
+
+  /// No description provided for @pricingPilot.
+  ///
+  /// In fr, this message translates to:
+  /// **'PILOTAGE DES TARIFS'**
+  String get pricingPilot;
+
+  /// No description provided for @pricingFreedom.
+  ///
+  /// In fr, this message translates to:
+  /// **'Liberté des Tarifs'**
+  String get pricingFreedom;
+
+  /// No description provided for @pricingFreedomDesc.
+  ///
+  /// In fr, this message translates to:
+  /// **'Déterminez vos propres tarifs selon votre expertise et la qualité de vos services.'**
+  String get pricingFreedomDesc;
+
+  /// No description provided for @updateMyServices.
+  ///
+  /// In fr, this message translates to:
+  /// **'METTRE À JOUR MES SERVICES'**
+  String get updateMyServices;
+
+  /// No description provided for @consultationFeeLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Tarif de la consultation'**
+  String get consultationFeeLabel;
+
+  /// No description provided for @extraKmFee.
+  ///
+  /// In fr, this message translates to:
+  /// **'Frais / KM'**
+  String get extraKmFee;
+
+  /// No description provided for @includedRadius.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rayon inclus'**
+  String get includedRadius;
+
+  /// No description provided for @pricingSaveSuccess.
+  ///
+  /// In fr, this message translates to:
+  /// **'Configurations enregistrées avec succès'**
+  String get pricingSaveSuccess;
+
+  /// No description provided for @adminPatientsList.
+  ///
+  /// In fr, this message translates to:
+  /// **'Liste des Patients'**
+  String get adminPatientsList;
+
+  /// No description provided for @searchPatientHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rechercher un patient...'**
+  String get searchPatientHint;
+
+  /// No description provided for @noPatientFound.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun patient trouvé'**
+  String get noPatientFound;
+
+  /// No description provided for @proDirectory.
+  ///
+  /// In fr, this message translates to:
+  /// **'Annuaire Professionnels'**
+  String get proDirectory;
+
+  /// No description provided for @searchProHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Rechercher un nom...'**
+  String get searchProHint;
+
+  /// No description provided for @filterValidated.
+  ///
+  /// In fr, this message translates to:
+  /// **'VALIDÉS'**
+  String get filterValidated;
+
+  /// No description provided for @filterPending.
+  ///
+  /// In fr, this message translates to:
+  /// **'EN ATTENTE'**
+  String get filterPending;
+
+  /// No description provided for @filterRejected.
+  ///
+  /// In fr, this message translates to:
+  /// **'REJETÉS'**
+  String get filterRejected;
+
+  /// No description provided for @noResultFound.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun résultat trouvé'**
+  String get noResultFound;
+
+  /// No description provided for @noMedicalInfoProvided.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucune information médicale renseignée pour ce patient.'**
+  String get noMedicalInfoProvided;
+
+  /// No description provided for @adminRequestDetails.
+  ///
+  /// In fr, this message translates to:
+  /// **'Détails de la Demande'**
+  String get adminRequestDetails;
+
+  /// No description provided for @adminServiceIntervention.
+  ///
+  /// In fr, this message translates to:
+  /// **'Service & Intervention'**
+  String get adminServiceIntervention;
+
+  /// No description provided for @adminCreationDate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Date Création'**
+  String get adminCreationDate;
+
+  /// No description provided for @adminAppointmentDate.
+  ///
+  /// In fr, this message translates to:
+  /// **'Date RDV'**
+  String get adminAppointmentDate;
+
+  /// No description provided for @adminAssignedPro.
+  ///
+  /// In fr, this message translates to:
+  /// **'Professionnel Assigné'**
+  String get adminAssignedPro;
+
+  /// No description provided for @adminNotYetAssigned.
+  ///
+  /// In fr, this message translates to:
+  /// **'Non encore assigné'**
+  String get adminNotYetAssigned;
+
+  /// No description provided for @adminRequestsMonitor.
+  ///
+  /// In fr, this message translates to:
+  /// **'Moniteur des Demandes'**
+  String get adminRequestsMonitor;
+
+  /// No description provided for @adminAllDates.
+  ///
+  /// In fr, this message translates to:
+  /// **'Toutes dates'**
+  String get adminAllDates;
+
+  /// No description provided for @adminThisWeek.
+  ///
+  /// In fr, this message translates to:
+  /// **'Cette semaine'**
+  String get adminThisWeek;
+
+  /// No description provided for @adminThisMonth.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce mois'**
+  String get adminThisMonth;
+
+  /// No description provided for @proReviewsTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Mes Avis'**
+  String get proReviewsTitle;
+
+  /// No description provided for @proReviewsOf.
+  ///
+  /// In fr, this message translates to:
+  /// **'Avis sur {name}'**
+  String proReviewsOf(String name);
+
+  /// No description provided for @proNoReviewsYet.
+  ///
+  /// In fr, this message translates to:
+  /// **'Aucun avis pour le moment'**
+  String get proNoReviewsYet;
+
+  /// No description provided for @proNoReviewsProDesc.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce professionnel n\'a pas encore reçu d\'évaluations.'**
+  String get proNoReviewsProDesc;
+
+  /// No description provided for @proNoReviewsMeDesc.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vos évaluations apparaîtront ici dès que les patients auront noté vos interventions.'**
+  String get proNoReviewsMeDesc;
+
+  /// No description provided for @adminReviewTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Vérification Dossier'**
+  String get adminReviewTitle;
+
+  /// No description provided for @adminRejectionReasonTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Motif du refus'**
+  String get adminRejectionReasonTitle;
+
+  /// No description provided for @adminRejectionHint.
+  ///
+  /// In fr, this message translates to:
+  /// **'Expliquez pourquoi ce dossier est rejeté...'**
+  String get adminRejectionHint;
+
+  /// No description provided for @adminConfirmRejection.
+  ///
+  /// In fr, this message translates to:
+  /// **'Confirmer le rejet'**
+  String get adminConfirmRejection;
+
+  /// No description provided for @adminSupportingDocs.
+  ///
+  /// In fr, this message translates to:
+  /// **'Pièces Justificatives'**
+  String get adminSupportingDocs;
+
+  /// No description provided for @adminProAlreadyValidated.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce professionnel est déjà validé'**
+  String get adminProAlreadyValidated;
+
+  /// No description provided for @adminProAlreadyRejected.
+  ///
+  /// In fr, this message translates to:
+  /// **'Ce professionnel a été rejeté'**
+  String get adminProAlreadyRejected;
+
+  /// No description provided for @adminServiceLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Service'**
+  String get adminServiceLabel;
+
+  /// No description provided for @adminSpecTypeLabel.
+  ///
+  /// In fr, this message translates to:
+  /// **'Spécialité / Type'**
+  String get adminSpecTypeLabel;
+
+  /// No description provided for @adminNoOcrData.
+  ///
+  /// In fr, this message translates to:
+  /// **'⚠️ Aucune donnée OCR disponible pour ce document.'**
+  String get adminNoOcrData;
+
+  /// No description provided for @adminRejectAction.
+  ///
+  /// In fr, this message translates to:
+  /// **'REJETER'**
+  String get adminRejectAction;
+
+  /// No description provided for @adminValidateAction.
+  ///
+  /// In fr, this message translates to:
+  /// **'VALIDER LE DOSSIER'**
+  String get adminValidateAction;
+
+  /// No description provided for @statusAwaitingPayment.
+  ///
+  /// In fr, this message translates to:
+  /// **'En attente de paiement'**
+  String get statusAwaitingPayment;
+
+  /// No description provided for @adminRole.
+  ///
+  /// In fr, this message translates to:
+  /// **'Administrateur'**
+  String get adminRole;
+
+  /// No description provided for @filterConfirmed.
+  ///
+  /// In fr, this message translates to:
+  /// **'CONFIRMÉS'**
+  String get filterConfirmed;
+
+  /// No description provided for @filterInProgress.
+  ///
+  /// In fr, this message translates to:
+  /// **'EN COURS'**
+  String get filterInProgress;
+
+  /// No description provided for @notSpecified.
+  ///
+  /// In fr, this message translates to:
+  /// **'Non spécifié'**
+  String get notSpecified;
+
+  /// No description provided for @notificationAdminNewProTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Dossier à valider'**
+  String get notificationAdminNewProTitle;
+
+  /// No description provided for @notificationAdminNewProBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Le professionnel {name} a soumis ses documents pour validation.'**
+  String notificationAdminNewProBody(Object name);
+
+  /// No description provided for @notificationAdminNewPatientTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouveau Patient'**
+  String get notificationAdminNewPatientTitle;
+
+  /// No description provided for @notificationAdminNewPatientBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Un nouveau patient, {name}, vient de créer son compte.'**
+  String notificationAdminNewPatientBody(Object name);
+
+  /// No description provided for @notificationAdminNewSosTitle.
+  ///
+  /// In fr, this message translates to:
+  /// **'Nouvelle Alerte SOS'**
+  String get notificationAdminNewSosTitle;
+
+  /// No description provided for @notificationAdminNewSosBody.
+  ///
+  /// In fr, this message translates to:
+  /// **'Une nouvelle demande SOS a été créée par {name}.'**
+  String notificationAdminNewSosBody(Object name);
 }
 
 class _AppLocalizationsDelegate

@@ -45,7 +45,7 @@ Future<void> _handleNotificationAction(NotificationResponse response, {required 
 
   try {
     final data = jsonDecode(payload);
-    
+
     // Notifications professionnel (nouvelle demande ou avis)
     if (data['type'] == 'sos' || data['type'] == 'appointment') {
       appRouter.go('/');
@@ -63,6 +63,20 @@ Future<void> _handleNotificationAction(NotificationResponse response, {required 
       return;
     }
 
+    // Notifications Admin
+    if (data['type'] == 'admin_new_pro') {
+      appRouter.push('/admin/professionals');
+      return;
+    }
+    if (data['type'] == 'admin_new_patient') {
+      appRouter.push('/admin/patients');
+      return;
+    }
+    if (data['type'] == 'admin_new_sos') {
+      appRouter.push('/admin/requests');
+      return;
+    }
+
     final intakeLogId = data['intakeLogId'] as String? ?? '';
     final snoozeInterval = data['snoozeInterval'] as int? ?? 10;
     final medicationId = data['medicationId'] as String? ?? '';
@@ -72,14 +86,14 @@ Future<void> _handleNotificationAction(NotificationResponse response, {required 
     final l10n = await _getLocalizations();
 
     // Enregistrement dans l'historique au moment de l'interaction pour les notifications simples
-    if (response.actionId != 'snooze') {
+    if (response.actionId != 'snooze' && data['type'] == 'medication') {
       notificationHistoryService.addTriggeredNotification(NotificationItem(
         id: intakeLogId.isNotEmpty ? intakeLogId : 'notif_${response.id}',
         title: l10n.notificationMedicationTitle(medicationName),
         body: l10n.notificationMedicationBody(dosage),
         timestamp: DateTime.now(),
         type: 'medication',
-        medicationName: medicationName, // AJOUT DU NOM DU MÉDICAMENT
+        medicationName: medicationName,
       ));
     }
 
@@ -290,11 +304,11 @@ class NotificationService {
     final l10n = await _getLocalizations();
     final notifId = id.abs() % 100000;
 
-    final String displayTitle = medicationName != null 
-        ? l10n.notificationMedicationTitle(medicationName) 
+    final String displayTitle = medicationName != null
+        ? l10n.notificationMedicationTitle(medicationName)
         : (title ?? '');
-    final String displayBody = dosage != null 
-        ? l10n.notificationMedicationBody(dosage) 
+    final String displayBody = dosage != null
+        ? l10n.notificationMedicationBody(dosage)
         : (body ?? '');
 
     final payload = jsonEncode({
@@ -303,6 +317,7 @@ class NotificationService {
       'dosage': dosage ?? '',
       'intakeLogId': intakeLogId,
       'snoozeInterval': snoozeInterval,
+      'type': 'medication',
     });
 
     await _notificationsPlugin.zonedSchedule(
@@ -344,7 +359,7 @@ class NotificationService {
   }
 
   // ============================================
-  // NOTIFICATIONS IMMÉDIATES (SOS, Rendez-vous Pro, Reviews)
+  // NOTIFICATIONS IMMÉDIATES (SOS, Rendez-vous Pro, Reviews, Admin)
   // ============================================
 
   Future<void> showInstantNotification({
@@ -370,9 +385,9 @@ class NotificationService {
       body,
       const NotificationDetails(
         android: AndroidNotificationDetails(
-          'msd_professional_alerts',
-          'Alertes Professionnels',
-          channelDescription: 'Notifications pour les nouvelles demandes SOS, rendez-vous et avis',
+          'msd_alerts',
+          'Alertes MSD',
+          channelDescription: 'Notifications pour les nouvelles demandes, rendez-vous et alertes admin',
           importance: Importance.max,
           priority: Priority.high,
           playSound: true,
@@ -382,20 +397,16 @@ class NotificationService {
       payload: jsonEncode(finalPayload),
     );
 
-    // Sauvegarde dans l'historique
+    // Sauvegarde dans l'historique Hive
     await notificationHistoryService.addTriggeredNotification(NotificationItem(
       id: id,
       title: title,
       body: body,
       timestamp: DateTime.now(),
       type: type,
-      medicationName: payload?['medicationName'], // Tenter de récupérer si présent
+      medicationName: payload?['medicationName'],
     ));
   }
-
-  // ============================================
-  // RAPPEL DE FIN DE JOURNÉE
-  // ============================================
 
   Future<void> scheduleEndOfDayReminder([List<IntakeLog>? todayLogs]) async {
     if (!_isEnabled) return;
@@ -450,8 +461,8 @@ class NotificationService {
     final l10n = await _getLocalizations();
     final notifId = id.abs() % 100000;
 
-    final title = isCritical 
-        ? l10n.notificationStockUrgentTitle(medicationName) 
+    final title = isCritical
+        ? l10n.notificationStockUrgentTitle(medicationName)
         : l10n.notificationStockLowTitle(medicationName);
     final body = l10n.notificationStockBody(currentStock);
 

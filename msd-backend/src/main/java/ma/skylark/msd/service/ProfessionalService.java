@@ -344,6 +344,9 @@ public class ProfessionalService {
                 .toList();
     }
 
+    /**
+     * Génère des créneaux horaires avec un intervalle d'une heure (ex: 08:00, 09:00...).
+     */
     private List<LocalDateTime> generateTimeSlots(LocalDate date) {
         List<LocalDateTime> slots = new ArrayList<>();
         LocalTime startTime = LocalTime.of(8, 0);
@@ -352,7 +355,8 @@ public class ProfessionalService {
         LocalTime currentTime = startTime;
         while (currentTime.isBefore(endTime)) {
             slots.add(LocalDateTime.of(date, currentTime));
-            currentTime = currentTime.plusMinutes(30);
+            // Modification : On passe de 30 mins à 1 heure
+            currentTime = currentTime.plusHours(1);
         }
         return slots;
     }

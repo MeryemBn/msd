@@ -13,7 +13,7 @@ enum RequestStatus {
   String getLabel(AppLocalizations l10n) {
     switch (this) {
       case RequestStatus.pending: return l10n.statusPending;
-      case RequestStatus.awaiting_payment: return "En attente de paiement";
+      case RequestStatus.awaiting_payment: return l10n.statusAwaitingPayment;
       case RequestStatus.confirmed: return l10n.statusConfirmed;
       case RequestStatus.on_the_way: return l10n.statusOnTheWay;
       case RequestStatus.in_progress: return l10n.statusInProgress;

@@ -562,7 +562,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get specNeuro => 'Neurology';
 
   @override
-  String get specPsychiatry => 'Psychiatry';
+  String get specPsychiatry => 'Psychiatrie';
 
   @override
   String get specRhumato => 'Rheumatology';
@@ -723,13 +723,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get myRequestsTitle => 'My requests';
 
   @override
-  String get filterAll => 'All';
+  String get filterAll => 'ALL';
 
   @override
   String get filterOngoing => 'Ongoing';
 
   @override
-  String get filterCompleted => 'Completed';
+  String get filterCompleted => 'COMPLETED';
 
   @override
   String get filterCancelled => 'Cancelled';
@@ -1301,4 +1301,209 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get chatbotConsult => 'Consult';
+
+  @override
+  String get financialDashboard => 'Financial Dashboard';
+
+  @override
+  String get performanceLast6Months => 'Performance (Last 6 Months)';
+
+  @override
+  String get earningsHistory => 'Earnings History';
+
+  @override
+  String get totalRevenue => 'Total Revenue';
+
+  @override
+  String get thisMonth => 'This month';
+
+  @override
+  String get pricingManagement => 'Pricing Management';
+
+  @override
+  String get adjustPricesAndLimits => 'Adjust your prices and limits';
+
+  @override
+  String get noEarningsRecorded => 'No earnings recorded.';
+
+  @override
+  String get pricingPilot => 'PRICING PILOT';
+
+  @override
+  String get pricingFreedom => 'Pricing Freedom';
+
+  @override
+  String get pricingFreedomDesc =>
+      'Determine your own prices according to your expertise and the quality of your services.';
+
+  @override
+  String get updateMyServices => 'UPDATE MY SERVICES';
+
+  @override
+  String get consultationFeeLabel => 'Consultation fee';
+
+  @override
+  String get extraKmFee => 'Fee / KM';
+
+  @override
+  String get includedRadius => 'Included radius';
+
+  @override
+  String get pricingSaveSuccess => 'Configurations saved successfully';
+
+  @override
+  String get adminPatientsList => 'Patients List';
+
+  @override
+  String get searchPatientHint => 'Search for a patient...';
+
+  @override
+  String get noPatientFound => 'No patient found';
+
+  @override
+  String get proDirectory => 'Professional Directory';
+
+  @override
+  String get searchProHint => 'Search for a name...';
+
+  @override
+  String get filterValidated => 'VALIDATED';
+
+  @override
+  String get filterPending => 'PENDING';
+
+  @override
+  String get filterRejected => 'REJETED';
+
+  @override
+  String get noResultFound => 'No result found';
+
+  @override
+  String get noMedicalInfoProvided =>
+      'No medical information provided for this patient.';
+
+  @override
+  String get adminRequestDetails => 'Request Details';
+
+  @override
+  String get adminServiceIntervention => 'Service & Intervention';
+
+  @override
+  String get adminCreationDate => 'Creation Date';
+
+  @override
+  String get adminAppointmentDate => 'Appointment Date';
+
+  @override
+  String get adminAssignedPro => 'Assigned Professional';
+
+  @override
+  String get adminNotYetAssigned => 'Not yet assigned';
+
+  @override
+  String get adminRequestsMonitor => 'Requests Monitor';
+
+  @override
+  String get adminAllDates => 'All dates';
+
+  @override
+  String get adminThisWeek => 'This week';
+
+  @override
+  String get adminThisMonth => 'This month';
+
+  @override
+  String get proReviewsTitle => 'My Reviews';
+
+  @override
+  String proReviewsOf(String name) {
+    return 'Reviews of $name';
+  }
+
+  @override
+  String get proNoReviewsYet => 'No reviews yet';
+
+  @override
+  String get proNoReviewsProDesc =>
+      'This professional has not received any reviews yet.';
+
+  @override
+  String get proNoReviewsMeDesc =>
+      'Your reviews will appear here once patients have rated your interventions.';
+
+  @override
+  String get adminReviewTitle => 'Document Verification';
+
+  @override
+  String get adminRejectionReasonTitle => 'Rejection Reason';
+
+  @override
+  String get adminRejectionHint => 'Explain why this file is rejected...';
+
+  @override
+  String get adminConfirmRejection => 'Confirm Rejection';
+
+  @override
+  String get adminSupportingDocs => 'Supporting Documents';
+
+  @override
+  String get adminProAlreadyValidated =>
+      'This professional is already validated';
+
+  @override
+  String get adminProAlreadyRejected => 'This professional has been rejected';
+
+  @override
+  String get adminServiceLabel => 'Service';
+
+  @override
+  String get adminSpecTypeLabel => 'Specialty / Type';
+
+  @override
+  String get adminNoOcrData => '⚠️ No OCR data available for this document.';
+
+  @override
+  String get adminRejectAction => 'REJECT';
+
+  @override
+  String get adminValidateAction => 'VALIDATE FILE';
+
+  @override
+  String get statusAwaitingPayment => 'Awaiting Payment';
+
+  @override
+  String get adminRole => 'Administrator';
+
+  @override
+  String get filterConfirmed => 'CONFIRMED';
+
+  @override
+  String get filterInProgress => 'IN PROGRESS';
+
+  @override
+  String get notSpecified => 'Non spécifié';
+
+  @override
+  String get notificationAdminNewProTitle => 'Dossier à valider';
+
+  @override
+  String notificationAdminNewProBody(Object name) {
+    return 'Le professionnel $name a soumis ses documents pour validation.';
+  }
+
+  @override
+  String get notificationAdminNewPatientTitle => 'Nouveau Patient';
+
+  @override
+  String notificationAdminNewPatientBody(Object name) {
+    return 'Un nouveau patient, $name, vient de créer son compte.';
+  }
+
+  @override
+  String get notificationAdminNewSosTitle => 'Nouvelle Alerte SOS';
+
+  @override
+  String notificationAdminNewSosBody(Object name) {
+    return 'Une nouvelle demande SOS a été créée par $name.';
+  }
 }
