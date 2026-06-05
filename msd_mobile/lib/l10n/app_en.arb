@@ -1,0 +1,532 @@
+{
+  "profileTitle": "My Profile",
+  "personalInfo": "PERSONAL INFORMATION",
+  "fullName": "Full Name",
+  "phone": "Phone",
+  "call": "Call",
+  "email": "Email",
+  "address": "Address",
+  "medicalInfo": "MEDICAL INFORMATION",
+  "bloodType": "Blood Type",
+  "allergies": "Allergies",
+  "history": "Medical History",
+  "insurance": "Insurance",
+  "settings": "SETTINGS",
+  "notifications": "Notifications",
+  "language": "Language",
+  "darkMode": "Dark Mode",
+  "logout": "Log Out",
+  "logoutConfirmTitle": "Logout",
+  "logoutConfirmMessage": "Do you really want to logout?",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "chooseLanguage": "Choose Language",
+  "msdTagline": "Your health, at your fingertips",
+  "username": "Username",
+  "usernameHint": "e.g. sarah.martin",
+  "password": "Password",
+  "passwordHint": "••••••••",
+  "forgotPassword": "Forgot password?",
+  "login": "Login",
+  "orDivider": "OR",
+  "noAccount": "Don't have an account? ",
+  "signUp": "Sign Up",
+  "createAccount": "Create your account",
+  "registerSubtitle": "Please fill in the information below to start your registration.",
+  "firstName": "First Name",
+  "firstNameHint": "e.g. Sarah",
+  "lastName": "Last Name",
+  "lastNameHint": "e.g. Martin",
+  "emailAddress": "Email address",
+  "emailHint": "example@email.com",
+  "passwordMinChars": "Min. 8 characters",
+  "confirmPassword": "Confirm password",
+  "confirmPasswordHint": "Confirm your password",
+  "passwordsDoNotMatch": "Passwords do not match",
+  "splashSubtitle": "Connect instantly with qualified healthcare professionals",
+  "getStarted": "Get Started",
+  "forgotPasswordSubtitle": "Enter your email address to receive a reset link.",
+  "sendLink": "Send link",
+  "emailSentTitle": "Email sent!",
+  "emailSentSubtitle": "If an account exists for {email}, a recovery email has been sent.",
+  "@emailSentSubtitle": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "backToLogin": "Back to login",
+  "verifyEmailTitle": "Verify your email",
+  "verifyEmailSubtitle": "A confirmation link has been sent to {email}. Please click on it to activate your account.",
+  "@verifyEmailSubtitle": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "hello": "Hello ",
+  "sosServices": "SOS SERVICES",
+  "onDutyPharmacy": "On-duty Pharmacy",
+  "findNearest": "Find nearest",
+  "allDosesDone": "Daily course completed!",
+  "allDosesDoneSubtitle": "All your doses are up to date for today. 👋",
+  "doseConfirmed": "DOSE CONFIRMED",
+  "doseLate": "LATE DOSE",
+  "nextDose": "NEXT DOSE",
+  "noNotifications": "No notifications",
+  "noNotificationsSubtitle": "You haven't received any messages yet.",
+  "clearNotificationsTitle": "Clear notifications",
+  "clearNotificationsMessage": "Do you really want to clear all history?",
+  "planningTitle": "Planning & Tracking",
+  "addMedication": "Add Medication",
+  "details": "Details",
+  "period": "Period",
+  "times": "Times",
+  "reminders": "Reminders",
+  "medicationName": "Medication Name",
+  "medicationNameHint": "e.g. Paracetamol",
+  "dosage": "Dosage",
+  "dosageHint": "e.g. 500mg",
+  "instruction": "Instruction",
+  "startDate": "Start Date",
+  "duration": "Duration (days)",
+  "durationHint": "e.g. 7",
+  "initialStock": "Initial Stock",
+  "stockHint": "e.g. 30",
+  "intakeTimes": "Intake Times",
+  "addTimeHint": "Click + to add a time",
+  "reminderIntensity": "Reminder Intensity",
+  "notificationAlert": "Notification",
+  "notificationSubtitle": "A subtle alert",
+  "alarmAlert": "Alarm",
+  "alarmSubtitle": "Persistent ringtone",
+  "notifyBefore": "Notify how many minutes before? ({minutes} min)",
+  "@notifyBefore": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "snoozeInterval": "Snooze Interval",
+  "finish": "Finish",
+  "next": "Next",
+  "duringMeal": "During meal",
+  "beforeMeal": "Before meal",
+  "onEmptyStomach": "On empty stomach",
+  "afterMeal": "After meal",
+  "medicationNameRequired": "Medication name is required",
+  "atLeastOneTimeRequired": "Please add at least one intake time",
+  "snooze": "Snooze ({minutes} min)",
+  "@snooze": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "confirmTake": "Confirm intake",
+  "until": "Until {date}",
+  "@until": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "daysRemaining": "{count} d. remaining",
+  "@daysRemaining": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "finishesToday": "Ends today",
+  "criticalStock": "Critical stock",
+  "lowStock": "Low stock",
+  "unitsRemaining": "{count} unit(s) remaining",
+  "@unitsRemaining": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "morning": "Morning",
+  "noon": "Noon",
+  "evening": "Evening",
+  "bedtime": "Bedtime",
+  "actionFor": "Action for {name}",
+  "@actionFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tooEarly": "It is still too early for this intake",
+  "lateStatus": "Late intake!",
+  "markAsTaken": "Mark as taken",
+  "markAsMissed": "Mark as missed",
+  "reschedule": "Reschedule",
+  "doctor": "Doctor",
+  "teleconsultation": "Teleconsultation",
+  "nurse": "Nurse",
+  "ambulance": "Ambulance",
+  "myMedications": "My Medications",
+  "dayTimeline": "Today's Timeline",
+  "calendarAndTracking": "Calendar & Tracking",
+  "noMedicationsToday": "No medications for today",
+  "yourRequest": "Your Request",
+  "specifySpecialtyAndIntervention": "Specify the specialty and type of intervention",
+  "specialty": "Specialty",
+  "chooseSpecialty": "Choose a specialty",
+  "interventionType": "Type of intervention",
+  "sosUrgency": "Urgency (SOS)",
+  "sosUrgencyDesc": "Closest available professional",
+  "appointment": "By Appointment",
+  "appointmentDesc": "Choose a date and time",
+  "continueText": "Continue",
+  "confirmRequest": "Confirm request",
+  "chooseInterventionType": "Please choose an intervention type",
+  "requestSent": "Request sent!",
+  "homeCare": "Home care",
+  "specifyAmbulanceType": "Specify ambulance type and intervention",
+  "ambulanceType": "Ambulance type",
+  "chooseAmbulanceType": "Choose ambulance type",
+  "interventionAddress": "Intervention Address",
+  "specifyLocation": "Specify the location where help is expected",
+  "exactAddress": "Exact address",
+  "addressHint": "Street, Neighborhood...",
+  "apartment": "Appt / House",
+  "apartmentHint": "e.g. Apt 4B",
+  "floor": "Floor",
+  "floorHint": "e.g. 2nd",
+  "entryCode": "Entry code",
+  "entryCodeHint": "e.g. A123",
+  "gpsActivation": "Please enable your GPS: {error}",
+  "@gpsActivation": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "payment": "Payment",
+  "choosePaymentMethod": "Choose your payment method",
+  "paymentMethod": "Payment method",
+  "consultationFee": "Consultation fee",
+  "paymentCash": "Cash",
+  "paymentCashDesc": "Pay on-site to the professional",
+  "paymentCard": "Bank Card",
+  "paymentCardDesc": "Secure pre-authorization",
+  "statusPending": "Pending",
+  "statusConfirmed": "Confirmed",
+  "statusOnTheWay": "On the way",
+  "statusInProgress": "In Progress",
+  "statusCompleted": "Completed",
+  "statusCancelled": "Cancelled",
+  "statusRejected": "Rejected",
+  "specGeneral": "General Medicine",
+  "specCardio": "Cardiology",
+  "specDerma": "Dermatology",
+  "specPediatry": "Pediatrics",
+  "specGyneco": "Gynecology",
+  "specOphtalmo": "Ophthalmology",
+  "specOrl": "ENT",
+  "specNeuro": "Neurology",
+  "specPsychiatry": "Psychiatry",
+  "specRhumato": "Rheumatology",
+  "specGastro": "Gastroenterology",
+  "specPneumo": "Pulmonology",
+  "specUro": "Urology",
+  "specEndocri": "Endocrinology",
+  "specOrtho": "Orthopedics",
+  "ambSmur": "Medicalized ambulance (SMUR)",
+  "ambRea": "Resuscitation ambulance",
+  "ambSanitary": "Sanitary ambulance (standard)",
+  "ambVsl": "VSL (Light Sanitary Vehicle)",
+  "specifyTeleconsult": "Specify the specialty for your video consultation",
+  "appointmentDate": "Appointment Date",
+  "desiredTime": "Desired Time",
+  "chooseDate": "Choose a date",
+  "realTimeTracking": "Real-time tracking",
+  "proOnTheWay": "Professional on the way",
+  "identityVerified": "Identity verified by MSD",
+  "dateAndTime": "DATE & TIME",
+  "addressLabel": "ADDRESS",
+  "itinerary": "Itinerary",
+  "professionalLabel": "PROFESSIONAL",
+  "estimatedAmount": "ESTIMATED AMOUNT",
+  "noteLabel": "NOTE",
+  "cancelledByUser": "Cancelled by user",
+  "rejectedByProfessional": "Rejected by the professional",
+  "cancelRequest": "Cancel request",
+  "cancelRequestConfirmTitle": "Cancel request?",
+  "cancelRequestConfirmMessage": "Are you sure you want to cancel this SOS request? This action is irreversible.",
+  "keepRequest": "No, keep",
+  "yesCancel": "Yes, cancel",
+  "requestCancelledSuccess": "Request cancelled successfully",
+  "errorPrefix": "Error: {error}",
+  "@errorPrefix": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "teleconsultation": "Teleconsultation",
+  "videoConsultation": "Video consultation • {specialty}",
+  "@videoConsultation": {
+    "placeholders": {
+      "specialty": {
+        "type": "String"
+      }
+    }
+  },
+  "joinTeleconsultation": "Join teleconsultation",
+  "healthServices": "Health services",
+  "assigned": "Assigned",
+  "waiting": "Waiting...",
+  "editProfile": "Edit Profile",
+  "save": "Save",
+  "city": "City",
+  "bloodGroup": "Blood Group",
+  "insuranceLabel": "Insurance (Policy No. / Type)",
+  "medicalHistory": "Medical History",
+  "noneProvided": "None provided",
+  "add": "Add",
+  "addTitle": "Add: {title}",
+  "@addTitle": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "description": "Description",
+  "profileUpdatedSuccess": "Profile updated successfully",
+  "fieldRequired": "This field is required",
+  "myRequestsTitle": "My requests",
+  "filterAll": "All",
+  "filterOngoing": "Ongoing",
+  "filterCompleted": "Completed",
+  "filterCancelled": "Cancelled",
+  "noRequests": "No requests",
+  "noRequestsAll": "You haven't made any SOS requests yet.",
+  "noRequestsOngoing": "No requests are currently being processed.",
+  "noRequestsCompleted": "You have no completed interventions in your history.",
+  "noRequestsCancelled": "No cancelled requests found.",
+  "legendTitle": "Legend",
+  "legendTaken": "Completed",
+  "legendPartial": "Partial",
+  "legendMissed": "Missed",
+  "legendFuture": "Future",
+  "confirmClearHistory": "Clear history?",
+  "clearHistoryMessage": "Do you want to permanently delete all your notifications? This action is irreversible.",
+  "clearAll": "Clear all",
+  "confirmLocation": "Confirm location",
+  "searchAddress": "Search an address...",
+  "step": "Step",
+  "ofTotal": "of",
+  "loading": "Loading...",
+  "medicationDetails": "Medication details",
+  "instructions": "Instructions",
+  "currentStock": "Current stock",
+  "refillStock": "Refill stock",
+  "refillTitle": "Refill stock: {name}",
+  "@refillTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "quantityToAdd": "Refilled quantity",
+  "quantityHint": "e.g. 30",
+  "home": "Home",
+  "planning": "Medications",
+  "sos": "Requests",
+  "profile": "Profile",
+  "frequency": "Frequency",
+  "takesPerDay": "{count} take(s) per day",
+  "@takesPerDay": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "startOfTreatment": "Start of treatment",
+  "endOfTreatment": "End of treatment",
+  "stockRefilledSuccess": "Stock of {name} refined!",
+  "@stockRefilledSuccess": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmRefill": "Confirm refill",
+  "newStock": "New stock: {count} units",
+  "@newStock": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noMedsForDay": "No medications scheduled for this day",
+  "regularizeTitle": "Regularize: {name}",
+  "@regularizeTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "statusPlanned": "Planned",
+  "notificationMedicationTitle": "Reminder: {name}",
+  "notificationMedicationBody": "It's time to take your medicine ({dosage})",
+  "notificationMedicationSnoozeBody": "Don't forget to take your medicine ({dosage})",
+  "notificationEndOfDayTitle": "Daily Summary",
+  "notificationEndOfDayBody": "Don't forget your end-of-day doses.",
+  "notificationStockUrgentTitle": "URGENT — {name}",
+  "notificationStockLowTitle": "Low Stock — {name}",
+  "notificationStockBody": "There are {count} unit(s) remaining.",
+  "notificationActionConfirm": "Confirm",
+  "notificationActionSnooze": "Remind me in {minutes} min",
+  "chooseProfile": "Choose the type of profile that corresponds to you.",
+  "iAmPatient": "I am a Patient",
+  "patientDesc": "I want to manage my health and that of my relatives.",
+  "iAmProfessional": "I am a Professional",
+  "professionalDesc": "I want to offer my services and follow my patients.",
+  "missionInProgress": "Mission in progress",
+  "addressNotSpecified": "Address not specified",
+  "emergenciesTitle": "SOS Emergencies",
+  "noEmergencyNearby": "No emergency nearby",
+  "availableAppointments": "Available Appointments",
+  "noAppointmentAvailable": "No appointment available",
+  "professional": "Professional",
+  "patient": "Patient",
+  "professionalInfo": "Professional Information",
+  "serviceType": "Service Type",
+  "chooseProfessional": "Choose a Professional",
+  "onDuty": "On Duty",
+  "offDuty": "Off Duty",
+  "visioConference": "Visio-conference",
+  "distConsultation": "Distance Consultation",
+  "join": "Join",
+  "done": "Done",
+  "start": "Start",
+  "inPersonConsultation": "Consultation",
+  "time": "Time",
+  "cancelMission": "Cancel Mission",
+  "noProfessionalFound": "No professional found",
+  "statusInProgress": "In Progress",
+  "dashboard": "Dashboard",
+  "agenda": "Agenda",
+  "earnings": "Earnings",
+  "onTheWay": "On the way",
+  "estimatedTime": "Estimated time",
+  "distance": "Distance",
+  "user": "User",
+  "occupation": "Occupation",
+  "proximityRange": "Search range",
+  "available": "Available",
+  "pendingAppointments": "Pending Appointments",
+  "todaysAgenda": "My missions for today",
+  "appointmentsTitle": "My Appointments",
+  "noAppointmentsAssigned": "No new appointments assigned",
+  "noAppointmentsToday": "No appointments for today",
+  "tooEarlyForAppointment": "It is still too early for this appointment. Come back 5 min before.",
+  "scheduleConflict": "Your schedule is already full at this time (one hour margin required).",
+  "requestAlreadyTaken": "This request has already been accepted by another professional.",
+  "appointmentLate": "LATE",
+  "alreadyActiveMission": "You already have an active mission. Finish it first.",
+  "acts": "Acts",
+  "noMissionRecorded": "No missions recorded",
+  "today": "Today",
+  "notificationNewSosTitle": "New SOS Urgency",
+  "notificationNewSosBody": "A new patient needs immediate assistance nearby.",
+  "notificationNewAppointmentTitle": "New Appointment",
+  "notificationNewAppointmentBody": "You have received a new appointment request.",
+  "notificationSosAcceptedTitle": "Request Accepted",
+  "notificationSosAcceptedBody": "A professional has accepted your request: {name}",
+  "notificationSosOnTheWayTitle": "Professional on the way",
+  "notificationSosOnTheWayBody": "{name} is on the way to your location.",
+  "notificationSosInProgressTitle": "Teleconsultation started",
+  "notificationSosInProgressBody": "{name} is waiting for you for the video consultation.",
+  "notificationSosCancelledTitle": "Intervention cancelled",
+  "notificationSosCancelledBody": "The request has been cancelled.",
+  "notificationSosCancelledByPatientBody": "The patient cancelled their intervention.",
+  "notificationSosCancelledByProBody": "The professional had to cancel the intervention.",
+  "notificationSosRejectedTitle": "Request Declined",
+  "notificationSosRejectedBody": "{name} has declined your request.",
+  "notificationSosRejectedBodyGeneric": "Your request was declined. You can try again with another professional.",
+  "notificationNewRatingTitle": "New Rating",
+  "notificationNewRatingBody": "{name} gave you a {rating} star rating!",
+  "@notificationNewRatingBody": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      },
+      "rating": {
+        "type": "int"
+      }
+    }
+  },
+  "morning": "Morning",
+  "afternoon": "Afternoon",
+  "evening": "Evening",
+  "availableTimeSlots": "Available Time Slots",
+  "noAvailableSlots": "No available slots",
+  "tryAnotherDate": "Try another date",
+  "chooseTimeSlot": "Please choose a time slot",
+  "profileSetup": "Profile Setup",
+  "completeProProfile": "Complete your professional profile",
+  "proSetupSubtitle": "This information is required to validate your account.",
+  "occupation": "Your occupation",
+  "verificationDocs": "Verification Documents",
+  "cniFront": "ID Card (Front)",
+  "cniBack": "ID Card (Back)",
+  "diploma": "Diploma / Certificate",
+  "authorization": "Professional Authorization",
+  "vehicleRegistration": "Vehicle Registration",
+  "transportAuth": "Transport Authorization",
+  "validationPendingTitle": "Verification in progress",
+  "validationPendingMessage": "Your file is being reviewed by our services.",
+  "refresh": "Refresh",
+  "validationRejectedTitle": "File not validated",
+  "validationRejectedMessage": "We could not validate your professional profile at this time. ",
+  "updateDocuments": "Update my documents",
+  "updateDocumentsSubtitle": "Correct and resend your files",
+  "contactSupportMessage": "Please contact MSD support if you need help: support@msd.ma",
+  "startOver": "Need to start over?",
+  "validationStatus": "Validation Status",
+  "validated": "Validated",
+  "rejected": "Rejected",
+  "pending": "Pending",
+  "chronicDiseases": "Chronic Diseases",
+  "skip": "Skip",
+  "adminManagementTools": "Management Tools",
+  "adminProfessionals": "Professionals",
+  "adminManageNetwork": "Manage network",
+  "adminPatients": "Patients",
+  "adminFullList": "Full list",
+  "adminSosMonitor": "SOS Monitor",
+  "adminLiveFlow": "Live flow",
+  "adminWelcome": "Welcome, Admin",
+  "adminPlatformStatus": "Platform Status",
+  "adminTotalSos": "Total SOS",
+  "adminMissions": "Missions",
+  "adminValidatedPros": "Validated Pros",
+  "adminSosDistribution": "SOS Distribution",
+  "adminDoctors": "Doctors",
+  "adminAmbulances": "Ambulances",
+  "adminNurses": "Nurses",
+  "adminTeleconsult": "Teleconsultations"
+}

@@ -1,0 +1,519 @@
+{
+  "profileTitle": "ملفي الشخصي",
+  "personalInfo": "معلومات شخصية",
+  "fullName": "الاسم الكامل",
+  "phone": "الهاتف",
+  "call": "اتصال",
+  "email": "البريد الإلكتروني",
+  "address": "العنوان",
+  "medicalInfo": "معلومات طبية",
+  "bloodType": "فصيلة الدم",
+  "allergies": "الحساسية",
+  "history": "السجل الطبي",
+  "insurance": "التأمين",
+  "settings": "الإعدادات",
+  "notifications": "الإشعارات",
+  "language": "اللغة",
+  "darkMode": "الوضع الداكن",
+  "logout": "تسجيل الخروج",
+  "logoutConfirmTitle": "تسجيل الخروج",
+  "logoutConfirmMessage": "هل تريد حقًا تسجيل الخروج؟",
+  "cancel": "إلغاء",
+  "confirm": "تأكيد",
+  "chooseLanguage": "اختر اللغة",
+  "msdTagline": "صحتك بين يديك",
+  "username": "اسم المستخدم",
+  "usernameHint": "مثال: sarah.martin",
+  "password": "كلمة المرور",
+  "passwordHint": "••••••••",
+  "forgotPassword": "هل نسيت كلمة المرور؟",
+  "login": "تسجيل الدخول",
+  "orDivider": "أو",
+  "noAccount": "ليس لديك حساب؟ ",
+  "signUp": "إنشاء حساب",
+  "createAccount": "أنشئ حسابك",
+  "registerSubtitle": "يرجى ملء المعلومات أدناه لبدء عملية التسجيل.",
+  "firstName": "الاسم الأول",
+  "firstNameHint": "مثال: سارة",
+  "lastName": "اسم العائلة",
+  "lastNameHint": "مثال: مارتن",
+  "emailAddress": "البريد الإلكتروني",
+  "emailHint": "example@email.com",
+  "passwordMinChars": "8 أحرف على الأقل",
+  "confirmPassword": "تأكيد كلمة المرور",
+  "confirmPasswordHint": "أكد كلمة المرور الخاصة بك",
+  "passwordsDoNotMatch": "كلمات المرور غير متطابقة",
+  "splashSubtitle": "تواصل فوراً مع أخصائيي رعاية صحية مؤهلين",
+  "getStarted": "ابدأ الآن",
+  "forgotPasswordSubtitle": "أدخل بريدك الإلكتروني لتلقي رابط إعادة تعيين كلمة المرور.",
+  "sendLink": "إرسال الرابط",
+  "emailSentTitle": "تم إرسال البريد!",
+  "emailSentSubtitle": "إذا كان هناك حساب مسجل بـ {email}، فقد تم إرسال بريد استرداد.",
+  "@emailSentSubtitle": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "backToLogin": "العودة لتسجيل الدخول",
+  "verifyEmailTitle": "تحقق من بريدك الإلكتروني",
+  "verifyEmailSubtitle": "تم إرسال رابط تأكيد إلى {email}. يرجى النقر عليه لتفعيل حسابك.",
+  "@verifyEmailSubtitle": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "hello": "مرحباً ",
+  "sosServices": "خدمات SOS",
+  "onDutyPharmacy": "صيدلية الحراسة",
+  "findNearest": "ابحث عن الأقرب",
+  "allDosesDone": "اكتمل المسار اليومي!",
+  "allDosesDoneSubtitle": "جميع جرعاتك محدثة لهذا اليوم. 👋",
+  "doseConfirmed": "تم تأكيد الجرعة",
+  "doseLate": "جرعة متأخرة",
+  "nextDose": "الجرعة القادمة",
+  "noNotifications": "لا توجد إشعارات",
+  "noNotificationsSubtitle": "لم تتلق أي رسائل بعد.",
+  "clearNotificationsTitle": "مسح الإشعارات",
+  "clearNotificationsMessage": "هل تريد حقاً مسح جميع السجلات؟",
+  "planningTitle": "التخطيط والمتابعة",
+  "addMedication": "إضافة دواء",
+  "details": "التفاصيل",
+  "period": "الفترة",
+  "times": "الأوقات",
+  "reminders": "التذكيرات",
+  "medicationName": "اسم الدواء",
+  "medicationNameHint": "مثال: باراسيتامول",
+  "dosage": "الجرعة",
+  "dosageHint": "مثال: 500 ملغ",
+  "instruction": "التعليمات",
+  "startDate": "تاريخ البدء",
+  "duration": "مدة العلاج (بالأيام)",
+  "durationHint": "مثال: 7",
+  "initialStock": "المخزون الأولي",
+  "stockHint": "مثال: 30",
+  "intakeTimes": "أوقات التناول",
+  "addTimeHint": "انقر على + لإضافة وقت",
+  "reminderIntensity": "شدة التذكير",
+  "notificationAlert": "إشعار",
+  "notificationSubtitle": "تنبيه هادئ",
+  "alarmAlert": "منبه",
+  "alarmSubtitle": "نغمة رنين مستمرة",
+  "notifyBefore": "تنبيه قبل كم دقيقة؟ ({minutes} دقيقة)",
+  "@notifyBefore": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "snoozeInterval": "فاصل التكرار (Snooze)",
+  "finish": "إنهاء",
+  "next": "التالي",
+  "duringMeal": "أثناء الطعام",
+  "beforeMeal": "قبل الطعام",
+  "onEmptyStomach": "على الريق",
+  "afterMeal": "بعد الطعام",
+  "medicationNameRequired": "اسم الدواء مطلوب",
+  "atLeastOneTimeRequired": "يرجى إضافة وقت تناول واحد على الأقل",
+  "snooze": "تكرار ({minutes} دقيقة)",
+  "@snooze": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "confirmTake": "تأكيد التناول",
+  "until": "حتى {date}",
+  "@until": {
+    "placeholders": {
+      "date": {
+        "type": "String"
+      }
+    }
+  },
+  "daysRemaining": "باقي {count} أيام",
+  "@daysRemaining": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "finishesToday": "ينتهي اليوم",
+  "criticalStock": "مخزون حرج",
+  "lowStock": "مخزون منخفض",
+  "unitsRemaining": "باقي {count} وحدة",
+  "@unitsRemaining": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "morning": "صباحاً",
+  "noon": "ظهراً",
+  "evening": "مساءً",
+  "bedtime": "عند النوم",
+  "actionFor": "إجراء لـ {name}",
+  "@actionFor": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "tooEarly": "لا يزال الوقت مبكراً جداً لهذا التناول",
+  "lateStatus": "تأخر التناول!",
+  "markAsTaken": "تحديد كمأخوذ",
+  "markAsMissed": "تحديد كفائت",
+  "reschedule": "تغيير الموعد",
+  "doctor": "طبيب",
+  "teleconsultion": "استشارة عن بعد",
+  "nurse": "ممرض",
+  "ambulance": "إسعاف",
+  "myMedications": "أدويتي",
+  "dayTimeline": "جدول اليوم",
+  "calendarAndTracking": "التقويم والمتابعة",
+  "noMedicationsToday": "لا توجد أدوية لليوم",
+  "yourRequest": "طلبك",
+  "specifySpecialtyAndIntervention": "حدد التخصص ونوع التدخل",
+  "specialty": "التخصص",
+  "chooseSpecialty": "اختر تخصصاً",
+  "interventionType": "نوع التدخل",
+  "sosUrgency": "حالة طارئة (SOS)",
+  "sosUrgencyDesc": "أقرب محترف متاح",
+  "appointment": "بموعد",
+  "appointmentDesc": "اختر التاريخ والوقت",
+  "continueText": "متابعة",
+  "confirmRequest": "تأكيد الطلب",
+  "chooseInterventionType": "يرجى اختيار نوع التدخل",
+  "requestSent": "تم إرسال الطلب!",
+  "homeCare": "رعاية منزلية",
+  "specifyAmbulanceType": "حدد نوع الإسعاف والتدخل",
+  "ambulanceType": "نوع الإسعاف",
+  "chooseAmbulanceType": "اختر نوع الإسعاف",
+  "interventionAddress": "عنوان التدخل",
+  "specifyLocation": "حدد الموقع الذي يتوقع فيه المساعدة",
+  "exactAddress": "العنوان الدقيق",
+  "addressHint": "الشارع، الحي...",
+  "apartment": "شقة / منزل",
+  "apartmentHint": "مثال: شقة 4B",
+  "floor": "الطابق",
+  "floorHint": "مثال: الثاني",
+  "entryCode": "رمز الدخول",
+  "entryCodeHint": "مثال: A123",
+  "gpsActivation": "يرجى تفعيل نظام تحديد المواقع (GPS): {error}",
+  "@gpsActivation": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "payment": "الدفع",
+  "choosePaymentMethod": "اختر طريقة الدفع",
+  "consultationFee": "رسوم الاستشارة",
+  "paymentCash": "نقداً",
+  "paymentCashDesc": "الدفع في الموقع للمحترف",
+  "paymentCard": "بطاقة مصرفية",
+  "paymentCardDesc": "تفويض مسبق آمن",
+  "statusPending": "قيد الانتظار",
+  "statusConfirmed": "تم التأكيد",
+  "statusOnTheWay": "في الطريق",
+  "statusInProgress": "قيد التنفيذ",
+  "statusCompleted": "مكتمل",
+  "statusCancelled": "ملغي",
+  "statusRejected": "مرفوض",
+  "specGeneral": "الطب العام",
+  "specCardio": "طب القلب",
+  "specDerma": "طب الأمراض الجلدية",
+  "specPediatry": "طب الأطفال",
+  "specGyneco": "طب النساء",
+  "specOphtalmo": "طب العيون",
+  "specOrl": "طب الأنف والأذن الحنجرة",
+  "specNeuro": "طب الأعصاب",
+  "specPsychiatry": "الطب النفسي",
+  "specRhumato": "طب الروماتيزم",
+  "specGastro": "طب الجهاز الهضمي",
+  "specPneumo": "طب الأمراض الصدرية",
+  "specUro": "طب المسالك البولية",
+  "specEndocri": "طب الغدد الصماء",
+  "specOrtho": "طب العظام",
+  "ambSmur": "سيارة إسعاف مجهزة (SMUR)",
+  "ambRea": "سيارة إسعاف إنعاش",
+  "ambSanitary": "سيارة إسعاف عادية",
+  "ambVsl": "سيارة نقل صحي خفيف (VSL)",
+  "specifyTeleconsult": "حدد التخصص لاستشارتك عبر الفيديو",
+  "appointmentDate": "تاريخ الموعد",
+  "desiredTime": "الوقت المطلوب",
+  "chooseDate": "اختر تاريخاً",
+  "realTimeTracking": "تتبع في الوقت الفعلي",
+  "proOnTheWay": "المحترف في الطريق",
+  "identityVerified": "الهوية معتمدة من MSD",
+  "dateAndTime": "التاريخ والوقت",
+  "addressLabel": "العنوان",
+  "itinerary": "مسار",
+  "professionalLabel": "المحترف",
+  "estimatedAmount": "المبلغ المقدر",
+  "noteLabel": "ملاحظة",
+  "cancelledByUser": "ألغيت من قبل المستخدم",
+  "rejectedByProfessional": "مرفوض من قبل المختص",
+  "cancelRequest": "إلغاء الطلب",
+  "cancelRequestConfirmTitle": "إلغاء الطلب؟",
+  "cancelRequestConfirmMessage": "هل أنت متأكد أنك تريد إلغاء هذا الطلب؟ هذا الإجراء لا يمكن التراجع عنه.",
+  "keepRequest": "لا، الاحتفاظ به",
+  "yesCancel": "نعم، إلغاء",
+  "requestCancelledSuccess": "تم إلغاء الطلب بنجاح",
+  "errorPrefix": "خطأ: {error}",
+  "@errorPrefix": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "teleconsultation": "استشارة عن بعد",
+  "videoConsultation": "استشارة فيديو • {specialty}",
+  "@videoConsultation": {
+    "placeholders": {
+      "specialty": {
+        "type": "String"
+      }
+    }
+  },
+  "joinTeleconsultation": "الانضمام إلى الاستشارة عن بعد",
+  "healthServices": "خدمات صحية",
+  "assigned": "تم التعيين",
+  "waiting": "قيد الانتظار...",
+  "editProfile": "تعديل الملف الشخصي",
+  "save": "حفظ",
+  "city": "المدينة",
+  "bloodGroup": "فصيلة الدم",
+  "insuranceLabel": "التأمين (رقم البوليصة / النوع)",
+  "medicalHistory": "السجل الطبي",
+  "noneProvided": "لم يتم تقديم أي معلومات",
+  "add": "إضافة",
+  "addTitle": "إضافة: {title}",
+  "@addTitle": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "description": "الوصف",
+  "profileUpdatedSuccess": "تم تحديث الملف الشخصي بنجاح",
+  "fieldRequired": "هذا الحقل مطلوب",
+  "myRequestsTitle": "طلباتي",
+  "filterAll": "الكل",
+  "filterOngoing": "قيد التنفيذ",
+  "filterCompleted": "المكتملة",
+  "filterCancelled": "الملغاة",
+  "noRequests": "لا توجد طلبات",
+  "noRequestsAll": "لم تقم بإجراء أي طلبات SOS بعد.",
+  "noRequestsOngoing": "لا توجد طلبات قيد المعالجة حالياً.",
+  "noRequestsCompleted": "ليس لديك أي تدخلات مكتملة في سجلك.",
+  "noRequestsCancelled": "لم يتم العثور على طلبات ملغاة.",
+  "legendTitle": "دليل الألوان",
+  "legendTaken": "مكتمل",
+  "legendPartial": "جزئي",
+  "legendMissed": "فائت",
+  "legendFuture": "مستقبلي",
+  "confirmClearHistory": "مسح السجل؟",
+  "clearHistoryMessage": "هل تريد حذف جميع الإشعارات نهائياً؟ هذا الإجراء لا يمكن التراجع عنه.",
+  "clearAll": "مسح الكل",
+  "confirmLocation": "تأكيد الموقع",
+  "searchAddress": "البحث عن عنوان...",
+  "step": "خطوة",
+  "ofTotal": "من",
+  "loading": "جاري التحميل...",
+  "medicationDetails": "تفاصيل الدواء",
+  "instructions": "التعليمات",
+  "currentStock": "المخزون الحالي",
+  "refillStock": "تجديد المخزون",
+  "refillTitle": "تجديد المخزون: {name}",
+  "@refillTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "quantityToAdd": "الكمية المضافة",
+  "quantityHint": "مثال: 30",
+  "home": "الرئيسية",
+  "planning": "ادويتي",
+  "sos": "الطلبات",
+  "profile": "الحساب",
+  "frequency": "التكرار",
+  "takesPerDay": "{count} مرة/مرات في اليوم",
+  "@takesPerDay": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "startOfTreatment": "بداية العلاج",
+  "endOfTreatment": "نهاية العلاج",
+  "stockRefilledSuccess": "تم تجديد مخزون {name}!",
+  "@stockRefilledSuccess": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "confirmRefill": "تأكيد التجديد",
+  "newStock": "المخزون الجديد: {count} وحدات",
+  "@newStock": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noMedsForDay": "لا توجد أدوية مقررة لهذا اليوم",
+  "regularizeTitle": "تنظيم: {name}",
+  "@regularizeTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "statusPlanned": "مقرر",
+  "notificationMedicationTitle": "تذكير: {name}",
+  "notificationMedicationBody": "حان وقت تناول جرعتك ({dosage})",
+  "notificationMedicationSnoozeBody": "لا تنس تناول جرعتك ({dosage})",
+  "notificationEndOfDayTitle": "ملخص يومك",
+  "notificationEndOfDayBody": "لا تنس جرعات نهاية اليوم.",
+  "notificationStockUrgentTitle": "عاجل - {name}",
+  "notificationStockLowTitle": "مخزون منخفض - {name}",
+  "notificationStockBody": "بقي {count} وحدة/وحدات.",
+  "notificationActionConfirm": "تأكيد",
+  "notificationActionSnooze": "تذكير بعد {minutes} دقيقة",
+  "chooseProfile": "اختر نوع الملف الشخصي الذي يناسبك.",
+  "iAmPatient": "أنا مريض",
+  "patientDesc": "أريد إدارة صحتي وصحة أقاربي.",
+  "iAmProfessional": "أنا مهني صحي",
+  "professionalDesc": "أريد تقديم خدماتي ومتابعة مرضاي.",
+  "missionInProgress": "المهمة قيد التنفيذ",
+  "addressNotSpecified": "العنوان غير حدد",
+  "emergenciesTitle": "الطوارئ",
+  "appointmentsTitle": "المواعيد",
+  "noEmergencyNearby": "لا توجد حالات طوارئ قريبة",
+  "availableAppointments": "المواعيد المتاحة",
+  "noAppointmentAvailable": "لا توجد مواعيد متاحة",
+  "professional": "مهني صحي",
+  "patient": "مريض",
+  "professionalInfo": "معلومات مهنية",
+  "serviceType": "نوع الخدمة",
+  "chooseProfessional": "اختر مهنياً صحياً",
+  "onDuty": "في الخدمة",
+  "offDuty": "خارج الخدمة",
+  "visioConference": "مؤتمر فيديو",
+  "distConsultation": "استشارة عن بعد",
+  "join": "انضمام",
+  "done": "تم",
+  "start": "بدء",
+  "inPersonConsultation": "استشارة حضورية",
+  "time": "الوقت",
+  "cancelMission": "إلغاء المهمة",
+  "noProfessionalFound": "لم يتم العثور على مهنيين",
+  "statusInProgress": "قيد التنفيذ",
+  "dashboard": "لوحة القيادة",
+  "agenda": "جدول المواعيد",
+  "earnings": "الأرباح",
+  "onTheWay": "في الطريق",
+  "estimatedTime": "الوقت المقدر",
+  "distance": "المسافة",
+  "user": "مستخدم",
+  "occupation": "المهنة",
+  "proximityRange": "نطاق البحث",
+  "available": "متاح",
+  "pendingAppointments": "مواعيد في الانتظار",
+  "todaysAgenda": "مهماتي اليوم",
+  "noAppointmentsAssigned": "لا توجد مواعيد جديدة معينة",
+  "noAppointmentsToday": "لا توجد مواعيد اليوم",
+  "tooEarlyForAppointment": "الوقت لا يزال مبكراً لهذا الموعد. يرجى العودة قبل 5 دقائق.",
+  "scheduleConflict": "لديك مهمة أخرى في هذا الوقت (مطلوب فاصل زمني لمدة ساعة).",
+  "requestAlreadyTaken": "تم قبول هذا الطلب بالفعل من قبل محترف آخر.",
+  "appointmentLate": "متأخر",
+  "alreadyActiveMission": "لديك مهمة نشطة حالياً. يرجى إكمالها أولاً.",
+  "acts": "أفعال",
+  "noMissionRecorded": "لم تُسجّل أي مهمة",
+  "today": "اليوم",
+  "notificationNewSosTitle": "حالة طارئة جديدة (SOS)",
+  "notificationNewSosBody": "مريض جديد يحتاج إلى مساعدة فورية في مكان قريب.",
+  "notificationNewAppointmentTitle": "موعد جديد",
+  "notificationNewAppointmentBody": "لقد تلقيت طلباً جديداً لموعد.",
+  "notificationSosAcceptedTitle": "تم قبول الطلب",
+  "notificationSosAcceptedBody": "قبل مختص طلبك: {name}",
+  "notificationSosOnTheWayTitle": "المختص في الطريق",
+  "notificationSosOnTheWayBody": "{name} في طريقه إلى موقعك.",
+  "notificationSosInProgressTitle": "بدأت الاستشارة عن بعد",
+  "notificationSosInProgressBody": "{name} في انتظارك للاستشارة عبر الفيديو.",
+  "notificationSosCancelledTitle": "تم إلغاء التدخل",
+  "notificationSosCancelledBody": "تم إلغاء الطلب.",
+  "notificationSosCancelledByPatientBody": "قام المريض بإلغاء التدخل.",
+  "notificationSosCancelledByProBody": "اضطر المهني الصحي لإلغاء التدخل.",
+  "notificationSosRejectedTitle": "تم رفض الطلب",
+  "notificationSosRejectedBody": "رفض {name} طلبك.",
+  "notificationSosRejectedBodyGeneric": "تم رفض طلبك. يمكنك المحاولة مرة أخرى مع مختص آخر.",
+  "morning": "صباحا",
+  "afternoon": "بعد الظهر",
+  "evening": "مساءً",
+  "availableTimeSlots": "الأوقات المتاحة",
+  "noAvailableSlots": "لا توجد أوقات متاحة",
+  "tryAnotherDate": "جرب تاريخا آخر",
+  "chooseTimeSlot": "الرجاء اختيار وقت",
+  "profileSetup": "إعداد الملف الشخصي",
+  "completeProProfile": "أكمل ملفك الشخصي المهني",
+  "proSetupSubtitle": "هذه المعلومات ضرورية للتحقق من حسابك.",
+  "occupation": "مهنتك",
+  "verificationDocs": "وثائق التحقق",
+  "cniFront": "بطاقة التعريف الوطنية (الوجه)",
+  "cniBack": "بطاقة التعريف الوطنية (الظهر)",
+  "diploma": "الدبلوم / الشهادة",
+  "authorization": "ترخيص مزاولة المهنة",
+  "vehicleRegistration": "البطاقة الرمادية",
+  "transportAuth": "رخصة النقل",
+  "validationPendingTitle": "التحقق قيد التنفيذ",
+  "validationPendingMessage": "ملفك قيد المراجعة من قبل مصالحنا.",
+  "refresh": "تحديث",
+  "validationRejectedTitle": "لم يتم قبول الملف",
+  "validationRejectedMessage": "تعذر علينا التحقق من ملفك المهني في الوقت الحالي. ",
+  "updateDocuments": "تحديث وثائقي",
+  "updateDocumentsSubtitle": "صحح وأعد إرسال ملفاتك",
+  "contactSupportMessage": "يرجى الاتصال بالدعم الفني لـ MSD إذا كنت بحاجة للمساعدة: support@msd.ma",
+  "startOver": "هل تريد البدء من جديد؟",
+  "validationStatus": "حالة التحقق",
+  "validated": "تم التحقق",
+  "rejected": "مرفوض",
+  "pending": "قيد الانتظار",
+  "chronicDiseases": "الأمراض المزمنة",
+  "skip": "تخطي",
+  "adminManagementTools": "أدوات الإدارة",
+  "adminProfessionals": "المهنيين",
+  "adminManageNetwork": "إدارة الشبكة",
+  "adminPatients": "المرضى",
+  "adminFullList": "القائمة الكاملة",
+  "adminSosMonitor": "مراقب SOS",
+  "adminLiveFlow": "التدفق المباشر",
+  "adminWelcome": "مرحباً، المسؤول",
+  "adminPlatformStatus": "حالة المنصة",
+  "adminTotalSos": "إجمالي SOS",
+  "adminMissions": "المهمات",
+  "adminValidatedPros": "المهنيين المعتمدين",
+  "adminSosDistribution": "توزيع SOS",
+  "adminDoctors": "الأطباء",
+  "adminAmbulances": "سيارات الإسعاف",
+  "adminNurses": "الممرضين",
+  "adminTeleconsult": "الاستشارات عن بعد"
+}

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "842784687760",
+    "project_id": "msd-mobile-21fb4",
+    "storage_bucket": "msd-mobile-21fb4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:842784687760:android:88764d4bfa4d86803b3a15",
+        "android_client_info": {
+          "package_name": "com.example.msd_mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDy9tHyJxZuo4mruw14j38hwTLpkqdHy3E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

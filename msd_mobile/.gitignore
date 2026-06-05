@@ -1,0 +1,30 @@
+# Fichiers générés par Flutter/Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# Fichiers de configuration IDE
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# Dossier Mock (À NE PAS POUSSER)
+lib/core/mock/
+
+# Dossier de config généré (Contient les clés API)
+assets/config/
+
+# Dossiers plateforme (Fichiers temporaires)
+android/local.properties
+android/app/src/main/res/values/strings.xml
+ios/Flutter/Generated.xcconfig
+ios/Flutter/flutter_export_environment.sh
+
+# Logs
+*.log
